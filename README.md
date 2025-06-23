@@ -1,17 +1,35 @@
-This is the official website of Codezilla RMP!
+# This is the official website of Codezilla RMP!
 
 ## Getting Started
 
-First, run the development server:
+➡️ First clone the repository:
+
+git clone https://github.com/HARISH130505/codezilla.git
+
+➡️ Then install the node packages:
 
 npm i
+
+➡️ Then run the server:
+
 npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+➡️ To push changes to the git:
+
+git add .
+
+git commit -m "new commit from your_name"
+
+git push origin main
+
+➡️ To pull changes from the git:
+
+git pull origin main
+
 
 ## Learn More
 
