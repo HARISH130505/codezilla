@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Codezilla Contact Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/tt-hoves');
+    body {
+      margin: 0;
+      font-family: 'TT Hoves', 'Montserrat', Arial, sans-serif;
+      background: #fff;
+      color: #020202;
+    }
+    .navbar {
+      background: #DE5D26;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      font-family: 'TT Hoves', 'Montserrat', Arial, sans-serif;
+    }
+    .logo-img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+    .navbar-links {
+      display: flex;
+      gap: 30px;
+      font-size: 1.1rem;
+    }
+    .navbar-links a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.2s;
+      font-family: inherit;
+    }
+    .navbar-links a:hover {
+      color: #080808;
+    }
+    .contact-btn {
+      background: #fff;
+      color: #DE5D26;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 24px;
+      padding: 10px 24px;
+      cursor: pointer;
+      margin-left: 20px;
+      transition: background 0.2s, color 0.2s;
+      font-family: inherit;
+    }
+    .contact-btn:hover {
+      background: #080808;
+      color: #ffbe94;
+    }
+    .main-section {
+      padding: 40px;
+      text-align: center;
+    }
+    .main-section h2 {
+      font-size: 2rem;
+      color: #080808;
+      margin-bottom: 10px;
+      font-weight: 700;
+      font-family: 'Cy Grotesk Grand', 'Montserrat', Arial, sans-serif;
+    }
+    .main-section h3 {
+      color: #b5b5b5;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 24px;
+      font-family: 'TT Hoves', 'Montserrat', Arial, sans-serif;
+    }
+    .contact-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 32px;
+      gap: 40px;
+      position: relative;
+    }
+    .left-info {
+      flex: 2;
+      text-align: left;
+      color: #DE5D26;
+      font-size: 1.15rem;
+    }
+    .left-info-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .message-img {
+      height: 32px;
+      width: auto;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .left-info h4 {
+      color: #080808;
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-family: 'Cy Grotesk Grand', 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      display: inline-block;
+    }
+    .icons-row {
+      display: flex;
+      gap: 22px;
+      margin-top: 26px;
+    }
+    .icon-card {
+      background: #fff;
+      border: 2px solid #080808;
+      padding: 26px 12px;
+      border-radius: 7px;
+      width: 180px;
+      height: 180px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(210,120,60,.05);
+      font-family: 'TT Hoves', 'Montserrat', Arial, sans-serif;
+      color: #080808;
+    }
+    .card-img {
+      height: 36px;
+      width: auto;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .icon-card strong, .icon-card div, .icon-card a {
+      color: #080808;
+      font-weight: 500;
+      font-size: 1.14rem;
+      font-family: 'TT Hoves', 'Montserrat', Arial, sans-serif;
+    }
+    .icon-card a {
+      text-decoration: underline;
+    }
+    .right-form {
+      flex: 1;
+      background: #DE5D26;
+      border-radius: 32px;
+      padding: 5px; /* Changed padding to 5px */
+      margin: 10px 0 0 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      color: #080808;
+      min-width: 375px;
+      max-width: 375px;
+      height: 475px;
+      box-sizing: border-box;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+      top: -20px;
+    }
+    .right-form h4 {
+      font-size: 1.42rem;
+      font-weight: 700;
+      font-family: 'Cy Grotesk Grand', 'Montserrat', Arial, sans-serif;
+      text-align: center;
+      margin-bottom: 18px;
+      width:100%;
+    }
+    .right-form input[type="text"], .right-form input[type="email"] {
+      width: 351px;
+      height: 50px;
+      background: #ff9460;
+      border: none;
+      border-radius: 18px;
+      padding: 0 14px;
+      font-size: 1.16rem;
+      margin-bottom: 18px;
+      color: #080808;
+      font-family: 'TT Hoves', 'Montserrat', Arial, sans-serif;
+      outline: none;
+      box-sizing: border-box;
+      text-align: center;
+      display: block;
+    }
+    .right-form textarea {
+      width: 351px;
+      height: 159px;
+      background: #ff9460;
+      border: none;
+      border-radius: 18px;
+      padding: 16px 14px;
+      font-size: 1.13rem;
+      margin-bottom: 18px;
+      color: #080808;
+      font-family: 'TT Hoves', 'Montserrat', Arial, sans-serif;
+      outline: none;
+      resize: none;
+      box-sizing: border-box;
+      text-align: center;
+      display: block;
+      line-height: 1.3;
+    }
+    .send-btn {
+      width: 154px;
+      height: 60px;
+      background: #080808;
+      color: #fff;
+      font-size: 1.18rem;
+      border-radius: 18px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      letter-spacing: 1px;
+      font-family: 'TT Hoves', 'Montserrat', Arial, sans-serif;
+      transition: transform 0.2s, background 0.2s, color 0.2s;
+      position: absolute;
+      right: 24px;
+      bottom: 32px;
+      align-self: flex-end;
+      margin-top: 10px;
+      display: block;
+    }
+    .send-btn:hover {
+      background: #DE5D26;
+      color: #080808;
+      transform: scale(1.1);
+    }
+    @media(max-width: 1100px){
+      .contact-content {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .icons-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+      }
+      .right-form {
+        margin-top: 32px;
+        min-width: 280px;
+        max-width: 95vw;
+        height: auto;
+        top: 0;
+      }
+      .icon-card {
+        width: 95vw;
+        max-width: 246px;
+        min-width: 180px;
+        height: 246px;
+      }
+      .right-form input[type="text"],
+      .right-form input[type="email"],
+      .right-form textarea {
+        width: 95vw;
+        max-width: 351px;
+        min-width: 180px;
+      }
+      .send-btn {
+        width: 80vw;
+        max-width: 154px;
+        min-width: 100px;
+      }
+      .logo-img {
+        height: 35px;
+      }
+      .message-img {
+        height: 28px;
+      }
+      .card-img {
+        height: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <!-- Replace src below with your actual logo image path -->
+    <img src="/zilla.logo.jpg" alt="CODEZILLA" class="logo-img">
+    <div class="navbar-links">
+      <a href="#">Home</a>
+      <a href="#">Upcoming Events</a>
+      <a href="#">About Our Club</a>
+      <a href="#">Our Past Events</a>
+      <a href="#">Club Members</a>
+    </div>
+    <button class="contact-btn">Contact Us</button>
+  </nav>
+  <div class="main-section">
+    <h2>Contact Our Friendly Family</h2>
+    <h3>Connect, Collaborate, Create Together.</h3>
+    <div class="contact-content">
+      <div class="left-info">
+        <div class="left-info-row">
+          <h4>Send Us a Message</h4>
+          <!-- Replace src with your actual message icon path -->
+          <img src="/enevolope.jpg" alt="icon" class="message-img">
+        </div>
+        <p style="color:#DE5D26; font-family:'TT Hoves','Montserrat',Arial,sans-serif;">
+          Feel free to reach out through the contact form or find our contact information below. Your feedback, questions, and suggestions are important to us as we strive to foster a vibrant tech community at our university.
+        </p>
+        <div class="icons-row">
+          <div class="icon-card">
+            <!-- Replace src with your actual chat/support icon path -->
+            <img src="/inbox.jpg" alt="Icon" class="card-img"><br>
+            <strong><h4>Chat To Support</h4></strong>
+            <div style="font-size: 13px;">codezillaclub@gmail.com</div>
+          </div>
+          <div class="icon-card">
+            <!-- Replace src with your actual call icon path -->
+            <img src="/call.jpg" alt="icon" class="card-img"><br>
+            <strong><h4>Call Us</h4></strong>
+            <div><a href="tel:+917498133608" style="color:#080808;">+91 74981 33608</a></div>
+          </div>
+          <div class="icon-card">
+            <!-- Replace src with your actual location icon path -->
+            <img src="/locate1.jpg" alt="Location Icon" class="card-img"><br>
+            
+            <strong><h4>Reach Us</h4></strong>
+            <div><p style="font-size: 10px;">
+              SRM University,<br>
+              Bharathi Salai, Ramapuram,<br>
+              Chennai, Tamil Nadu 600089<br>
+            </p>
+              <a href="https://maps.app.goo.gl/bWd8gwjzZpGGHx7y5" style="color:#080808; font-size: 12px; color: blue;">View On Google Maps</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="right-form">
+        <h4>Get In Touch</h4>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Write Your Message Here" required></textarea>
+        <button type="submit" class="send-btn">SEND &#8594;</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
