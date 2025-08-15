@@ -131,11 +131,25 @@
       font-family: 'TT Hoves', 'Montserrat', Arial, sans-serif;
       color: #080808;
     }
+    .card-strip {
+      position: absolute;
+      top: 30px;       
+      right: 12px;      
+      width: 100px;     
+      height: 36px;   
+      background: linear-gradient(90deg, #DE5D26 80%, #ff9460 100%);
+      border-radius: 18px;
+      z-index: 1;
+      opacity: 0.85;
+    }
     .card-img {
       height: 36px;
       width: auto;
       display: block;
       margin-bottom: 2px;
+      position: relative;
+      z-index: 2;
+      margin-left: 0;
     }
     .icon-card strong, .icon-card div, .icon-card a {
       color: #080808;
@@ -305,19 +319,19 @@
         </p>
         <div class="icons-row">
           <div class="icon-card">
-        
+            <div class="card-strip"></div>
             <img src="/inbox.jpg" alt="Icon" class="card-img"><br>
             <strong><h4>Chat To Support</h4></strong>
             <div style="font-size: 13px;">codezillaclub@gmail.com</div>
           </div>
           <div class="icon-card">
-        
+            <div class="card-strip"></div>
             <img src="/call.jpg" alt="icon" class="card-img"><br>
             <strong><h4>Call Us</h4></strong>
             <div><a href="tel:+917498133608" style="color:#080808;">+91 74981 33608</a></div>
           </div>
           <div class="icon-card">
-         
+            <div class="card-strip"></div>
             <img src="/locate1.jpg" alt="Location Icon" class="card-img"><br>
             
             <strong><h4>Reach Us</h4></strong>
