@@ -18,7 +18,7 @@ const EVENTS: Event[] = [
     location: "SRMIST Ramapuram",
     description:
       "Event Description",
-    image: "",
+    image: "/placeholder.png",
     cta: { label: "Register Now", href: "#" },
   },
   {
@@ -28,7 +28,7 @@ const EVENTS: Event[] = [
     location: "Online",
     description:
       "Event Description",
-    image: "",
+    image: "/placeholder.png",
     cta: { label: "Join Now", href: "#" },
   },
   {
@@ -38,7 +38,7 @@ const EVENTS: Event[] = [
     location: "TRP Auditorium Hall",
     description:
       "Event Description",
-    image: "",
+    image: "/placeholder.png",
     cta: { label: "Reserve Seat", href: "#" },
   },
 ];
