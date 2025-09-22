@@ -48,8 +48,7 @@ export default function EventsPage() {
     <main className="bg-white min-h-screen py-12 px-4 sm:px-8 lg:px-16">
       <header className="max-w-6xl mx-auto mb-8">
         <h1
-          className="text-3xl sm:text-4xl font-bold"
-          style={{ color: "#080808", fontFamily: "Cy Grotesk Grand, sans-serif" }}
+          className="text-center text-4xl sm:text-5xl font-bold p-2 font-passion"
         >
           Codezilla Events
         </h1>

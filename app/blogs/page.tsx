@@ -55,7 +55,7 @@ export default function BlogsPage() {
       {/* Banner */}
       <div className="banner-bg mx-6 mt-4 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center p-6 md:p-8 text-white">
         <div className="max-w-full md:max-w-[50%] mb-4 md:mb-0">
-          <h1 className="text-4xl font-black mb-2 tracking-wide md:text-5xl">ZILLABYTES</h1>
+          <h1 className="text-4xl font-passion mb-2 tracking-wide md:text-5xl">ZILLABYTES</h1>
           <p className="text-sm tracking-widest mb-4">www.codezilla.club</p>
 
           {/* Search Bar */}

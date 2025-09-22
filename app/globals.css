@@ -30,10 +30,6 @@ body {
   padding: 0;
 }
 
-/* Headings */
-h1, h2, h3 {
-  font-family: var(--font-archivo-black);
-}
 
 /* Banner Text Example */
 .banner-text {
