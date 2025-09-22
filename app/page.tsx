@@ -5,7 +5,7 @@ const page = () => {
      <div className="bg-gray-50 flex items-center justify-center  my-4 p-10">
       <div className="bg-white shadow-xl rounded-2xl p-6 sm:p-8 lg:p-12 max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12 transform transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl">
         <div className="flex-1 text-center lg:text-left space-y-4">
-          <h1 className="text-gray-900 text-3xl sm:text-4xl lg:text-5xl font-passion-one">
+          <h1 className="text-gray-900 text-3xl sm:text-4xl lg:text-5xl font-passion">
             CODEZILLA
           </h1>
           <p className="text-orange-600 text-lg sm:text-xl font-semibold">

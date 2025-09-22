@@ -36,7 +36,7 @@ const Navbar = () => {
           {navItems.map((item) => (
             <li
               key={item.name}
-              className='text-white text-2xl font-passion-one hover:text-indigo-300 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer'
+              className='text-white text-2xl font-passion hover:text-indigo-300 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer'
             >
               <Link href={item.path}>
                 {item.name}
@@ -64,7 +64,7 @@ const Navbar = () => {
             {navItems.map((item) => (
               <li
                 key={item.name}
-                className='text-white text-center text-xl font-passion-one hover:text-[#6E008B] transition duration-300 ease-in-out cursor-pointer'
+                className='text-white text-center text-xl font-passion hover:text-[#6E008B] transition duration-300 ease-in-out cursor-pointer'
                 onClick={() => setIsOpen(false)}
               >
                 <Link href={item.path}>
