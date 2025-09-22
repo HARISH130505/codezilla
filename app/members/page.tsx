@@ -45,7 +45,7 @@ export default function Page() {
   ];
 
   return (
-    <div className="min-h-screen py-12 px-4 md:px-8 lg:px-16 text-center">
+    <div className="bg-white min-h-screen py-12 px-4 md:px-8 lg:px-16 text-center">
       <h1 className="text-4xl md:text-5xl font-passion mb-16 tracking-wide">
         CLUB MEMBERS
       </h1>
