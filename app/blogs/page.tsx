@@ -1,53 +1,38 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
 import { Search } from "lucide-react";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface Blog {
-  id: number;
+  id: string;
   title: string;
+  slug: string;
+  description: string;
+  imgsrc: string;
   published: string;
-  desc: string;
-  imgSrc: string;
-  url: string; // URL to open on click
 }
 
-const blogs: Blog[] = [
-  {
-    id: 1,
-    title: "The Rise of Quantum Computing",
-    published: "June 12, 2025",
-    desc: `Quantum computing is no longer a far-off dream. With companies like IBM, Google, and startups pushing boundaries, we're closer to solving problems that classical computers can't handle. From cryptography to drug discovery, this new era of computing could reshape entire ...`,
-    imgSrc: "/placeholder1.png",
-    url: "/blogs/quantum-computing",
-  },
-  {
-    id: 2,
-    title: "The Future of Cybersecurity",
-    published: "May 28, 2025",
-    desc: `As the Internet of Things grows, so do vulnerabilities. Learn how modern cybersecurity measures like AI-based threat detection and zero-trust architecture are becoming essential to protect data and devices in our connected world ...`,
-    imgSrc: "/placeholder2.png",
-    url: "/blogs/cybersecurity-future",
-  },
-  {
-    id: 3,
-    title: "Top 5 AI Tools for Productivity",
-    published: "May 4, 2025",
-    desc: `AI is revolutionizing daily work. This blog covers tools that boost productivity—from automated writing assistants to smart scheduling bots. Whether you're a student, developer, or CEO, these tools can save hours of work like typing, research ...`,
-    imgSrc: "/placeholder3.png",
-    url: "/blogs/ai-tools-productivity",
-  },
-];
-
 export default function BlogsPage() {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const res = await fetch("/api/desc");
+      const data = await res.json();
+      setBlogs(data.blogs || []);
+    };
+    fetchBlogs();
+  }, []);
 
   const filteredBlogs = blogs.filter((blog) =>
     blog.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleCardClick = (url: string) => {
-    window.open(url, "_blank"); // open in new tab
+  const handleCardClick = (slug: string) => {
+    router.push(`/blogs/${slug}`);
   };
 
   return (
@@ -86,21 +71,27 @@ export default function BlogsPage() {
             <div
               key={blog.id}
               className="card w-full md:w-[30%] bg-white rounded-2xl p-3 shadow-md hover:shadow-xl transition-all duration-200 ease-in-out transform hover:-translate-y-2 cursor-pointer"
-              onClick={() => handleCardClick(blog.url)}
+              onClick={() => handleCardClick(blog.slug)}
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
-                if (e.key === "Enter") handleCardClick(blog.url);
+                if (e.key === "Enter") handleCardClick(blog.slug);
               }}
             >
               <img
-                src={blog.imgSrc}
+                src={blog.imgsrc}
                 alt={blog.title}
                 className="w-full h-[130px] rounded-xl object-cover mb-3"
               />
-              <h3 className="card-title font-black text-sm mb-1 text-black">{blog.title}</h3>
-              <p className="card-published text-xs text-gray-600 mb-2">Published: {blog.published}</p>
-              <p className="card-desc text-xs text-gray-700 leading-tight overflow-hidden text-ellipsis flex-grow">{blog.desc}</p>
+              <h3 className="card-title font-black text-sm mb-1 text-black">
+                {blog.title}
+              </h3>
+              <p className="card-published text-xs text-gray-600 mb-2">
+                Published: {new Date(blog.published).toLocaleDateString()}
+              </p>
+              <p className="card-desc text-xs text-gray-700 leading-tight overflow-hidden text-ellipsis flex-grow line-clamp-3">
+                {blog.description}
+              </p>
             </div>
           ))
         ) : (
