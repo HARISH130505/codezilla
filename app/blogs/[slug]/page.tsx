@@ -13,6 +13,9 @@ interface Blog {
 }
 
 async function fetchBlogBySlug(slug: string): Promise<Blog | null> {
+  if (!supabase) {
+    return null;
+  }
   const { data, error } = await supabase
     .from("blogs")
     .select("*")
