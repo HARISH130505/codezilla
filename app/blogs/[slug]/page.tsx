@@ -11,8 +11,12 @@ interface Blog {
   published: string;
 }
 
-export default async function BlogPage({ params }: { params: { slug: string } | Promise<{ slug: string }> }) {
-  const { slug } = await Promise.resolve(params as { slug: string } | Promise<{ slug: string }>);
+interface BlogPageProps {
+  params: { slug: any};
+}
+
+export default async function BlogPage({ params }: BlogPageProps) {
+  const { slug } = params;
 
   const { data: blog, error } = await supabase
     .from("blogs")
