@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
+import Image from "next/image";
 
 interface Blog {
   id: string;
@@ -37,10 +38,12 @@ export default async function BlogPage({ params }: { params: { slug: string } })
         {/* Blog Image Header */}
         {blog.imgsrc && (
           <div className="mb-8 max-h-[450px] overflow-hidden">
-            <img 
-              src={blog.imgsrc} 
-              alt={blog.title} 
-              className="w-full h-full object-cover rounded-b-lg shadow-lg" 
+            <Image
+              src={blog.imgsrc}
+              alt={blog.title}
+              width={800}        
+              height={500}      
+              className="w-full h-full object-cover rounded-b-lg shadow-lg"
             />
           </div>
         )}

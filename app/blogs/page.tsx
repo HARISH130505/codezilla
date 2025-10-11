@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface Blog {
   id: string;
@@ -78,9 +79,11 @@ export default function BlogsPage() {
                 if (e.key === "Enter") handleCardClick(blog.slug);
               }}
             >
-              <img
+              <Image
                 src={blog.imgsrc}
                 alt={blog.title}
+                width={800}  
+                height={500}    
                 className="w-full h-[130px] rounded-xl object-cover mb-3"
               />
               <h3 className="card-title font-black text-sm mb-1 text-black">
