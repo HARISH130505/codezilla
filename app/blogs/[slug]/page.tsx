@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabaseClient";
 import Image from "next/image";
+import React from "react";
 
 interface Blog {
   id: string;
@@ -11,8 +12,6 @@ interface Blog {
   published: string;
 }
 
-
-// Fetch a single blog by slug
 async function fetchBlogBySlug(slug: string): Promise<Blog | null> {
   const { data, error } = await supabase
     .from("blogs")
@@ -24,10 +23,9 @@ async function fetchBlogBySlug(slug: string): Promise<Blog | null> {
   return data;
 }
 
-export default async function BlogPage({ params }: { params: { slug: string } }) {
+export default async function BlogPage(props: any) {
+  const { params } = props as { params: { slug: string } };
   const { slug } = params;
-
-  // Fetch blog data asynchronously
   const blog: Blog | null = await fetchBlogBySlug(slug);
 
   if (!blog) {
