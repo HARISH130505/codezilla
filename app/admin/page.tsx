@@ -20,14 +20,21 @@ export default function AdminPage() {
   const handleUpload = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
     let imageUrl = "";
+
+    if (!supabase) {
+      alert("Supabase is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.");
+      setLoading(false);
+      return;
+    }
+
+    const client = supabase; // narrow non-null for TypeScript
 
     if (file) {
       const fileName = `${Date.now()}-${file.name}`;
-      const { error: imgError } = await supabase.storage
+      const { error: imgError } = await client.storage
         .from("blog-images")
-        .upload(fileName, file);
+        .upload(fileName, file as any);
 
       if (imgError) {
         alert("Image upload failed: " + imgError.message);
@@ -35,11 +42,11 @@ export default function AdminPage() {
         return;
       }
 
-      const { data } = supabase.storage.from("blog-images").getPublicUrl(fileName);
+      const { data } = client.storage.from("blog-images").getPublicUrl(fileName);
       imageUrl = data.publicUrl;
     }
 
-    const { error: insertError } = await supabase.from("blogs").insert([
+    const { error: insertError } = await (client as any).from("blogs").insert([
       {
         slug,
         title,
