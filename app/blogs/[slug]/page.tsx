@@ -12,7 +12,7 @@ interface Blog {
 }
 
 interface BlogPageProps {
-  params: { slug: string };
+  params: { slug: string | any};
 }
 
 export default async function BlogPage({ params }: BlogPageProps) {
