@@ -11,11 +11,10 @@ interface Blog {
   published: string;
 }
 
-// Change this to match Next.js 15 expectations
 export default async function BlogPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string | any }>;
 }) {
   const { slug } = await params;
 
