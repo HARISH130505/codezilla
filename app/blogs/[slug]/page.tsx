@@ -23,7 +23,7 @@ async function fetchBlogBySlug(slug: string): Promise<Blog | null> {
   return data;
 }
 
-export default async function BlogPage(props: any) {
+export default async function BlogPage(props: unknown) {
   const { params } = props as { params: { slug: string } };
   const { slug } = params;
   const blog: Blog | null = await fetchBlogBySlug(slug);
