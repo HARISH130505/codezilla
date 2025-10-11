@@ -1,6 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
 import Image from "next/image";
-import { notFound } from "next/navigation";
 
 interface Blog {
   id: string;
@@ -12,39 +11,13 @@ interface Blog {
   published: string;
 }
 
-interface BlogPageProps {
-  params: { slug: string };
-}
-
-// Generate metadata for SEO
-export async function generateMetadata({ params }: BlogPageProps) {
-  const { slug } = params;
-  
-  const { data: blog } = await supabase
-    .from("blogs")
-    .select("title, desc, imgsrc")
-    .eq("slug", slug)
-    .single<Pick<Blog, 'title' | 'desc' | 'imgsrc'>>();
-
-  if (!blog) {
-    return {
-      title: "Blog Not Found",
-    };
-  }
-
-  return {
-    title: blog.title,
-    description: blog.desc,
-    openGraph: {
-      title: blog.title,
-      description: blog.desc,
-      images: blog.imgsrc ? [{ url: blog.imgsrc }] : [],
-    },
-  };
-}
-
-export default async function BlogPage({ params }: BlogPageProps) {
-  const { slug } = params;
+// Change this to match Next.js 15 expectations
+export default async function BlogPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
   const { data: blog, error } = await supabase
     .from("blogs")
@@ -52,14 +25,14 @@ export default async function BlogPage({ params }: BlogPageProps) {
     .eq("slug", slug)
     .single<Blog>();
 
-  // Handle not found
-  if (!blog) {
-    notFound();
-  }
-
-  // Handle actual errors
-  if (error) {
-    throw error;
+  if (error || !blog) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <div className="text-xl font-semibold text-gray-600 p-6 bg-white rounded-lg shadow-md">
+          🔍 Blog not found or an error occurred.
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -73,7 +46,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
               fill
               priority
               className="object-cover rounded-b-lg"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 896px, 896px"
+              sizes="(max-width: 768px) 100vw, 896px"
             />
           </div>
         )}
