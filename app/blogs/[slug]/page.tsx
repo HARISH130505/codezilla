@@ -18,14 +18,12 @@ interface BlogPageProps {
 export default async function BlogPage({ params }: BlogPageProps) {
   const { slug } = params;
 
-  // Fetch blog from Supabase, type-safe
   const { data: blog, error } = await supabase
     .from("blogs")
     .select("*")
     .eq("slug", slug)
-    .single<Blog>(); // <Blog> types the returned row
+    .single<Blog>();
 
-  // Handle missing blog or errors
   if (error || !blog) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
@@ -39,7 +37,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white shadow-xl rounded-lg overflow-hidden">
-        {/* Blog Image */}
         {blog.imgsrc && (
           <div className="mb-8 max-h-[450px] overflow-hidden">
             <Image
@@ -51,9 +48,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
             />
           </div>
         )}
-
         <div className="p-6 sm:p-10">
-          {/* Title & Metadata */}
           <h1 className="text-5xl font-extrabold text-gray-900 leading-tight mb-4">
             {blog.title}
           </h1>
@@ -67,8 +62,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
               })}
             </time>
           </p>
-
-          {/* Content */}
           <div className="prose prose-lg max-w-none text-gray-800">
             <p className="leading-relaxed whitespace-pre-line font-serif text-xl">
               {blog.content}
