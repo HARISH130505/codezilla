@@ -28,25 +28,46 @@ export default function AdminPage() {
       return;
     }
 
-    const client = supabase; // narrow non-null for TypeScript
+    const client = supabase; 
+
+    type SupaClientLike = {
+      storage: {
+        from: (bucket: string) => {
+          upload: (
+            path: string,
+            file: Blob
+          ) => Promise<{ data: unknown; error: { message?: string } | null }>;
+          getPublicUrl: (
+            path: string
+          ) => { data: { publicUrl: string } | null };
+        };
+      };
+      from: (table: string) => {
+        insert: (
+          rows: Array<Record<string, unknown>>
+        ) => Promise<{ error: { message?: string } | null }>;
+      };
+    };
+
+    const clientDb = client as unknown as SupaClientLike;
 
     if (file) {
       const fileName = `${Date.now()}-${file.name}`;
-      const { error: imgError } = await client.storage
+      const { error: imgError } = await clientDb.storage
         .from("blog-images")
-        .upload(fileName, file as any);
+        .upload(fileName, file as Blob);
 
       if (imgError) {
-        alert("Image upload failed: " + imgError.message);
+        alert("Image upload failed: " + (imgError.message ?? "Unknown error"));
         setLoading(false);
         return;
       }
 
-      const { data } = client.storage.from("blog-images").getPublicUrl(fileName);
-      imageUrl = data.publicUrl;
+      const { data } = clientDb.storage.from("blog-images").getPublicUrl(fileName);
+      imageUrl = data?.publicUrl ?? "";
     }
 
-    const { error: insertError } = await (client as any).from("blogs").insert([
+    const { error: insertError } = await clientDb.from("blogs").insert([
       {
         slug,
         title,
