@@ -11,12 +11,12 @@ interface Blog {
   published: string;
 }
 
-interface BlogPageProps {
+interface PageProps {
   params: { slug: string };
 }
 
-export default async function BlogPage({ params }: BlogPageProps) {
-  const { slug } = params; // <-- no await
+export default async function BlogPage({ params }: PageProps) {
+  const { slug } = params; // <- no await
 
   const { data, error } = await supabase
     .from("blogs")
@@ -24,7 +24,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
     .eq("slug", slug)
     .single();
 
-  if (error || !data)
+  if (error || !data) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-xl font-semibold text-gray-600 p-6 bg-white rounded-lg shadow-md">
@@ -32,13 +32,13 @@ export default async function BlogPage({ params }: BlogPageProps) {
         </div>
       </div>
     );
+  }
 
   const blog = data as Blog;
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white shadow-xl rounded-lg overflow-hidden">
-        {/* Blog Image Header */}
         {blog.imgsrc && (
           <div className="mb-8 max-h-[450px] overflow-hidden">
             <Image
@@ -52,7 +52,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
         )}
 
         <div className="p-6 sm:p-10">
-          {/* Title and Metadata */}
           <h1 className="text-5xl font-extrabold text-gray-900 leading-tight mb-4">
             {blog.title}
           </h1>
@@ -66,8 +65,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
               })}
             </time>
           </p>
-
-          {/* Content Body */}
           <div className="prose prose-lg max-w-none text-gray-800">
             <p className="leading-relaxed whitespace-pre-line font-serif text-xl">
               {blog.content}
