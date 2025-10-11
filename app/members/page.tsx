@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Page() {
   const members = [
     {
@@ -60,9 +62,11 @@ export default function Page() {
             }`}
           >
             <div className="w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden flex-shrink-0">
-              <img
+              <Image
                 src={member.img}
                 alt={member.name}
+                width={400}         
+                height={400}           
                 className="w-full h-full object-cover"
               />
             </div>

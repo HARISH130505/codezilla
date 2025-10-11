@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 type Event = {
   id: string;
@@ -66,9 +67,11 @@ export default function EventsPage() {
             key={event.id}
             className="bg-white border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition"
           >
-            <img
+            <Image
               src={event.image}
               alt={event.title}
+              width={800}                
+              height={192}         
               className="w-full h-48 object-cover"
             />
             <div className="p-4 flex flex-col justify-between">
