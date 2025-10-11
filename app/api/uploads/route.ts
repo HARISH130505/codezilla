@@ -2,6 +2,13 @@ import { supabase } from "@/lib/supabaseClient";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
+  if (!supabase) {
+    return NextResponse.json(
+      { error: "Supabase client is not configured. Check NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY." },
+      { status: 500 }
+    );
+  }
+
   const formData = await req.formData();
   const file = formData.get("file") as File;
 

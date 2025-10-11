@@ -17,7 +17,7 @@ async function fetchBlogBySlug(slug: string): Promise<Blog | null> {
     .from("blogs")
     .select("*")
     .eq("slug", slug)
-    .single<Blog>();
+    .single();
 
   if (error || !data) return null;
   return data;
