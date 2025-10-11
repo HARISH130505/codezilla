@@ -11,29 +11,21 @@ interface Blog {
   published: string;
 }
 
-interface BlogPageProps {
-  params: { slug: string };
-}
+// Instead of just { params: { slug: string } }, make it a Promise type
+interface BlogPageProps extends Promise<{ params: { slug: string } }> {}
 
-// Fetch a single blog by slug — returns a Promise<Blog | null>
-async function fetchBlogBySlug(slug: string): Promise<Blog | null> {
-  const { data, error } = await supabase
+export default async function BlogPage(props: BlogPageProps) {
+  // Await the props to get params
+  const { params } = await props;
+  const { slug } = params;
+
+  const { data: blog, error } = await supabase
     .from("blogs")
     .select("*")
     .eq("slug", slug)
     .single<Blog>();
 
-  if (error || !data) return null;
-  return data;
-}
-
-export default async function BlogPage({ params }: BlogPageProps) {
-  const { slug } = params;
-
-  // Fetch blog asynchronously — blog is typed as Blog | null
-  const blog: Blog | null = await fetchBlogBySlug(slug);
-
-  if (!blog) {
+  if (!blog || error) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
         <div className="text-xl font-semibold text-gray-600 p-6 bg-white rounded-lg shadow-md">
