@@ -11,9 +11,6 @@ interface Blog {
   published: string;
 }
 
-interface BlogPageProps {
-  params: { slug: string };
-}
 
 // Fetch a single blog by slug
 async function fetchBlogBySlug(slug: string): Promise<Blog | null> {
@@ -27,7 +24,7 @@ async function fetchBlogBySlug(slug: string): Promise<Blog | null> {
   return data;
 }
 
-export default async function BlogPage({ params }: BlogPageProps) {
+export default async function BlogPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
   // Fetch blog data asynchronously
