@@ -54,3 +54,14 @@ body {
     #d9b68e 100%
   );
 }
+.bg-animated-gradient {
+  background: radial-gradient(circle at 0% 0%, #0b1120 0, #020617 35%, #111827 70%, #020617 100%);
+  background-size: 200% 200%;
+  animation: bg-pan 26s ease-in-out infinite;
+}
+
+@keyframes bg-pan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
