@@ -22,43 +22,6 @@ const cards = [
   },
 ];
 
-const codeSnippets = [
-  `</>  Building Tech Leaders
-function innovate() {
-  return creativity + collab;
-}`,
-  `// Open Source
-class Developer {
-  buildProject() {
-    return awesome();
-  }
-}`,
-  `// Community
-const vision = {
-  learn: true,
-  grow: true
-};`,
-  `// SRM IST
-function joinClub() {
-  gainSkills();
-  buildNetwork();
-}`,
-  `</>  Codezilla
-const mission = 
-  "empower youth";`,
-  `// Tech Initiative
-var impact = "industry";
-var ready = true;`,
-];
-
-const getRandomDuration = (index: number) => {
-  return 12 + Math.floor(Math.random() * 12) + index;
-};
-
-const getRandomDelay = (index: number) => {
-  return Math.random() * 3;
-};
-
 export default function AboutPage() {
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -72,110 +35,72 @@ export default function AboutPage() {
 
   return (
     <div
-      className="min-h-screen relative overflow-hidden bg-black"
+      className="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#fff4e6] via-[#fff7ed] to-[#fffbeb]"
       onMouseMove={handleMouseMove}
     >
-      {/* Interactive glow following mouse */}
+      {/* Soft interactive orange glow */}
       <motion.div
         className="pointer-events-none absolute inset-0"
         style={{
-          background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(251,146,60,0.2), rgba(15,23,42,1))`,
+          background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(251,146,60,0.22), rgba(255,250,235,1))`,
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
       />
 
-      {/* Code columns with VISIBLE COLORS */}
-      <div className="pointer-events-none absolute inset-0 opacity-40 text-xs md:text-sm font-mono select-none">
-        <div className="absolute inset-x-8 inset-y-20 grid grid-cols-3 md:grid-cols-6 gap-12 md:gap-20">
-          {Array.from({ length: 6 }).map((_, colIndex) => {
-            const snippet = codeSnippets[colIndex % codeSnippets.length];
-            const lines = snippet.split("\n");
-            const randomDuration = getRandomDuration(colIndex);
-            const randomDelay = getRandomDelay(colIndex);
-
-            return (
-              <motion.div
-                key={colIndex}
-                className="flex flex-col gap-1 whitespace-pre leading-relaxed"
-                initial={{ y: -100 }}
-                animate={{ y: [100, -100] }}
-                transition={{
-                  duration: randomDuration,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "linear",
-                  delay: randomDelay,
-                }}
-              >
-                {lines.map((line, i) => (
-                  <span
-                    key={i}
-                    className={
-                      line.trim().startsWith("//")
-                        ? "text-[#00FF9F]"
-                        : "text-[#FF6B35]"
-                    }
-                  >
-                    {line}
-                  </span>
-                ))}
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Dark overlay - LIGHTER */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
-
-      {/* Floating neon orbs - MORE VISIBLE */}
+      {/* Brand orange blobs */}
       <motion.div
-        initial={{ opacity: 0.25, x: -260, y: -160 }}
-        animate={{ x: 40, y: -40 }}
+        initial={{ opacity: 0.55, x: -220, y: -180 }}
+        animate={{ x: 15, y: -25, opacity: [0.5, 0.85, 0.6] }}
         transition={{
           duration: 24,
           repeat: Infinity,
           repeatType: "reverse",
           ease: "easeInOut",
         }}
-        className="pointer-events-none absolute -top-32 -left-32 w-80 h-80 rounded-full bg-orange-500/30 blur-3xl"
+        className="pointer-events-none absolute -top-32 -left-28 w-80 h-80 rounded-full bg-orange-300/45 blur-3xl"
       />
       <motion.div
-        initial={{ opacity: 0.2, x: 260, y: 200 }}
-        animate={{ x: 20, y: 40 }}
+        initial={{ opacity: 0.5, x: 260, y: 200 }}
+        animate={{ x: -10, y: 35, opacity: [0.45, 0.8, 0.55] }}
         transition={{
           duration: 28,
           repeat: Infinity,
           repeatType: "reverse",
           ease: "easeInOut",
         }}
-        className="pointer-events-none absolute bottom-0 right-0 w-96 h-96 rounded-full bg-amber-400/25 blur-3xl"
+        className="pointer-events-none absolute bottom-0 right-0 w-96 h-96 rounded-full bg-amber-300/40 blur-3xl"
       />
+
+      {/* Soft overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/70" />
 
       {/* MAIN CONTENT */}
       <div className="relative z-10 container mx-auto px-4 py-12 lg:px-16">
-        {/* Top heading - INTERACTIVE POP-OUT */}
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: -30, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{
+            scale: 1.04,
+            textShadow: "0 0 18px rgba(249,115,22,0.7)",
+          }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-10 cursor-pointer"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold p-2 font-passion text-white drop-shadow-[0_0_12px_rgba(251,146,60,0.6)]">
+          <h2 className="text-4xl sm:text-5xl font-bold p-2 font-passion text-slate-900">
             About Our Club
           </h2>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-20">
-          {/* Left text block - INTERACTIVE POP-OUT */}
+          {/* Left text */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            whileHover={{ x: 10, scale: 1.02 }}
+            whileHover={{ x: 8, scale: 1.02 }}
             className="lg:w-1/2 space-y-6 text-center lg:text-left cursor-pointer"
           >
             <motion.h3
@@ -183,8 +108,8 @@ export default function AboutPage() {
               animate={{
                 textShadow: [
                   "0 0 0px #fb923c",
-                  "0 0 14px #fb923c",
-                  "0 0 6px #fb923c",
+                  "0 0 14px #fed7aa",
+                  "0 0 4px #fed7aa",
                 ],
               }}
               transition={{
@@ -193,16 +118,16 @@ export default function AboutPage() {
                 repeatType: "reverse",
               }}
               whileHover={{
-                scale: 1.08,
-                textShadow: "0 0 20px #fb923c",
+                scale: 1.06,
+                textShadow: "0 0 18px #fb923c",
               }}
-              className="text-3xl sm:text-4xl font-bold text-orange-400 transition-all"
+              className="text-3xl sm:text-4xl font-bold text-orange-500 transition-all"
             >
               Join Our Building Together Club!
             </motion.h3>
             <motion.p
               whileHover={{ scale: 1.03, x: 5 }}
-              className="text-lg sm:text-xl text-gray-200 leading-relaxed max-w-xl mx-auto lg:mx-0 transition-all"
+              className="text-lg sm:text-xl text-gray-700 leading-relaxed max-w-xl mx-auto lg:mx-0 transition-all"
             >
               Do you love creating, designing, and building? Whether you're into
               woodworking, DIY projects, coding, or crafting, our club is the perfect
@@ -210,7 +135,7 @@ export default function AboutPage() {
             </motion.p>
           </motion.div>
 
-          {/* Right cards grid */}
+          {/* Right cards */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -221,8 +146,11 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              whileHover={{ scale: 1.05 }}
-              className="col-span-1 md:col-span-2 text-center text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300 rounded-lg p-2 font-['Poppins'] mb-6 cursor-pointer transition-all"
+              whileHover={{
+                scale: 1.04,
+                textShadow: "0 0 18px rgba(249,115,22,0.7)",
+              }}
+              className="col-span-1 md:col-span-2 text-center text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-400 rounded-lg p-2 font-['Poppins'] mb-6 cursor-pointer transition-all"
             >
               Why Join Us?
             </motion.h2>
@@ -231,7 +159,7 @@ export default function AboutPage() {
               {cards.map((card, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{
                     duration: 0.7,
@@ -239,19 +167,24 @@ export default function AboutPage() {
                     ease: "easeOut",
                   }}
                   whileHover={{
-                    y: -12,
-                    scale: 1.08,
-                    boxShadow: "0 0 40px rgba(251,146,60,0.8)",
+                    y: -10,
+                    scale: 1.05,
+                    boxShadow: "0 0 40px rgba(249,115,22,0.45)",
+                    borderColor: "#fed7aa",
                   }}
+                  whileTap={{ scale: 0.97 }}
                   onHoverStart={() => setHoveredCard(idx)}
                   onHoverEnd={() => setHoveredCard(null)}
-                  className="bg-orange-200/90 p-6 rounded-3xl shadow-lg border border-orange-300/80 transition-all duration-300 cursor-pointer"
+                  className="bg-white/95 p-6 rounded-3xl shadow-sm border border-orange-100 transition-all duration-300 cursor-pointer"
                 >
                   <motion.h4
                     animate={{
-                      color:
-                        hoveredCard === idx ? "#ff4500" : "#ff7517",
-                      scale: hoveredCard === idx ? 1.1 : 1,
+                      color: hoveredCard === idx ? "#f97316" : "#ea580c",
+                      scale: hoveredCard === idx ? 1.06 : 1,
+                      textShadow:
+                        hoveredCard === idx
+                          ? "0 0 12px rgba(249,115,22,0.7)"
+                          : "0 0 0px rgba(0,0,0,0)",
                     }}
                     className="font-bold mb-3 text-xl sm:text-2xl"
                   >
@@ -259,8 +192,7 @@ export default function AboutPage() {
                   </motion.h4>
                   <motion.p
                     animate={{
-                      color:
-                        hoveredCard === idx ? "#1a1a1a" : "#1f2937",
+                      color: hoveredCard === idx ? "#111827" : "#4b5563",
                     }}
                     className="text-sm sm:text-base"
                   >
