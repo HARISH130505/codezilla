@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 const Page = () => {
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationRef = useRef<number>();
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -14,14 +16,196 @@ const Page = () => {
     setMousePos({ x, y });
   }
 
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Set canvas size
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Particle system configuration
+    const particles: Array<{
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      color: string;
+      opacity: number;
+      waveOffset: number;
+      orbitRadius: number;
+      orbitSpeed: number;
+      orbitAngle: number;
+      type: 'normal' | 'orbit' | 'wave';
+    }> = [];
+
+    const particleCount = 150;
+    const mouse = { x: 0, y: 0, radius: 120 };
+
+    // Color palette matching your orange theme
+    const colors = [
+      'rgba(251, 146, 60, 0.6)',    // orange-400
+      'rgba(249, 115, 22, 0.5)',    // orange-500
+      'rgba(253, 186, 116, 0.4)',   // orange-300
+      'rgba(254, 215, 170, 0.3)',   // orange-200
+      'rgba(255, 237, 213, 0.25)',  // orange-100
+      'rgba(253, 224, 71, 0.35)',   // yellow-300
+      'rgba(252, 211, 77, 0.3)',    // amber-300
+    ];
+
+    // Initialize particles with different behaviors
+    for (let i = 0; i < particleCount; i++) {
+      const type = i % 3 === 0 ? 'orbit' : i % 3 === 1 ? 'wave' : 'normal';
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speedX: Math.random() * 0.5 - 0.25,
+        speedY: Math.random() * 0.5 - 0.25,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        opacity: Math.random() * 0.3 + 0.1,
+        waveOffset: Math.random() * Math.PI * 2,
+        orbitRadius: type === 'orbit' ? Math.random() * 100 + 50 : 0,
+        orbitSpeed: type === 'orbit' ? Math.random() * 0.02 + 0.01 : 0,
+        orbitAngle: Math.random() * Math.PI * 2,
+        type
+      });
+    }
+
+    // Draw connecting lines
+    const drawConnections = () => {
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a + 1; b < particles.length; b++) {
+          const dx = particles[a].x - particles[b].x;
+          const dy = particles[a].y - particles[b].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 100) {
+            const opacity = 0.15 * (1 - distance / 100);
+            ctx.strokeStyle = `rgba(251, 146, 60, ${opacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    };
+
+    // Draw particle with glow effect
+    const drawParticle = (particle: typeof particles[0]) => {
+      // Glow effect
+      const gradient = ctx.createRadialGradient(
+        particle.x, particle.y, 0,
+        particle.x, particle.y, particle.size * 3
+      );
+      gradient.addColorStop(0, particle.color.replace('0.6', '0.8'));
+      gradient.addColorStop(1, particle.color.replace('0.6', '0'));
+
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.size * 2, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      // Core particle
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      ctx.fillStyle = particle.color;
+      ctx.fill();
+    };
+
+    // Update particle positions
+    const updateParticles = () => {
+      particles.forEach(particle => {
+        // Mouse interaction
+        const dx = mouse.x - particle.x;
+        const dy = mouse.y - particle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < mouse.radius) {
+          const force = (mouse.radius - distance) / mouse.radius;
+          particle.speedX = dx * force * 0.05;
+          particle.speedY = dy * force * 0.05;
+        }
+
+        // Different behaviors based on type
+        if (particle.type === 'normal') {
+          particle.x += particle.speedX;
+          particle.y += particle.speedY;
+        } else if (particle.type === 'orbit') {
+          particle.orbitAngle += particle.orbitSpeed;
+          particle.x = mouse.x + Math.cos(particle.orbitAngle) * particle.orbitRadius;
+          particle.y = mouse.y + Math.sin(particle.orbitAngle) * particle.orbitRadius;
+        } else if (particle.type === 'wave') {
+          particle.waveOffset += 0.05;
+          particle.x += particle.speedX;
+          particle.y += Math.sin(particle.waveOffset) * 0.5;
+        }
+
+        // Boundary wrap
+        if (particle.x > canvas.width) particle.x = 0;
+        if (particle.x < 0) particle.x = canvas.width;
+        if (particle.y > canvas.height) particle.y = 0;
+        if (particle.y < 0) particle.y = canvas.height;
+      });
+    };
+
+    // Animation loop
+    const animate = () => {
+      if (!ctx) return;
+      
+      // Clear with subtle fade effect for trails
+      ctx.fillStyle = 'rgba(255, 250, 235, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Update mouse position for particles
+      mouse.x = (mousePos.x / 100) * canvas.width;
+      mouse.y = (mousePos.y / 100) * canvas.height;
+
+      updateParticles();
+      drawConnections();
+      
+      particles.forEach(drawParticle);
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    // Start animation
+    animate();
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [mousePos]);
+
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4 py-10 relative overflow-hidden bg-gradient-to-b from-[#fff4e6] via-[#fff7ed] to-[#fffbeb]"
       onMouseMove={handleMouseMove}
     >
-      {/* Interactive soft orange glow */}
+      {/* Animated Canvas Background */}
+      <canvas
+        ref={canvasRef}
+        className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
+        style={{ mixBlendMode: 'multiply' }}
+      />
+
+      {/* Existing interactive soft orange glow */}
       <motion.div
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 z-10"
         style={{
           background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(251,146,60,0.22), rgba(255,250,235,1))`,
         }}
@@ -30,7 +214,7 @@ const Page = () => {
         transition={{ duration: 0.6 }}
       />
 
-      {/* Brand orange blobs */}
+      {/* Existing Brand orange blobs */}
       <motion.div
         initial={{ opacity: 0.55, x: -220, y: -180 }}
         animate={{ x: 15, y: -25, opacity: [0.5, 0.85, 0.6] }}
@@ -40,7 +224,7 @@ const Page = () => {
           repeatType: "reverse",
           ease: "easeInOut",
         }}
-        className="pointer-events-none absolute -top-32 -left-28 w-80 h-80 rounded-full bg-orange-300/45 blur-3xl"
+        className="pointer-events-none absolute -top-32 -left-28 w-80 h-80 rounded-full bg-orange-300/45 blur-3xl z-10"
       />
       <motion.div
         initial={{ opacity: 0.5, x: 260, y: 200 }}
@@ -51,11 +235,11 @@ const Page = () => {
           repeatType: "reverse",
           ease: "easeInOut",
         }}
-        className="pointer-events-none absolute bottom-0 right-0 w-96 h-96 rounded-full bg-amber-300/40 blur-3xl"
+        className="pointer-events-none absolute bottom-0 right-0 w-96 h-96 rounded-full bg-amber-300/40 blur-3xl z-10"
       />
 
       {/* Very light overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/70" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/70 z-10" />
 
       {/* Hero card (same structure as your previous one, recolored) */}
       <motion.div
@@ -66,7 +250,7 @@ const Page = () => {
           scale: 1.05,
           boxShadow: "0 0 40px rgba(248,113,22,0.35)",
         }}
-        className="relative bg-white/95 border border-orange-300/70 shadow-[0_20px_50px_rgba(15,23,42,0.1)] rounded-2xl p-6 sm:p-8 lg:p-12 max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12 overflow-hidden backdrop-blur-md transition-all duration-300 cursor-pointer"
+        className="relative bg-white/95 border border-orange-300/70 shadow-[0_20px_50px_rgba(15,23,42,0.1)] rounded-2xl p-6 sm:p-8 lg:p-12 max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-12 overflow-hidden backdrop-blur-md transition-all duration-300 cursor-pointer z-20"
       >
         <div className="pointer-events-none absolute inset-0 border border-orange-200/60 rounded-2xl" />
 
