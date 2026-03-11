@@ -12,10 +12,12 @@ interface Blog {
   published: string;
 }
 
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
 async function fetchBlogBySlug(slug: string): Promise<Blog | null> {
-  if (!supabase) {
-    return null;
-  }
+  if (!supabase) return null;
   const { data, error } = await supabase
     .from("blogs")
     .select("*")
@@ -23,13 +25,12 @@ async function fetchBlogBySlug(slug: string): Promise<Blog | null> {
     .single();
 
   if (error || !data) return null;
-  return data;
+  return data as Blog;
 }
 
-export default async function BlogPage(props: unknown) {
-  const { params } = props as { params: { slug: string } };
-  const { slug } = params;
-  const blog: Blog | null = await fetchBlogBySlug(slug);
+export default async function BlogPage({ params }: PageProps) {
+  const { slug } = await params;
+  const blog = await fetchBlogBySlug(slug);
 
   if (!blog) {
     return (
@@ -44,7 +45,6 @@ export default async function BlogPage(props: unknown) {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white shadow-xl rounded-lg overflow-hidden">
-        {/* Blog Header Image */}
         {blog.imgsrc && (
           <div className="mb-8 max-h-[450px] overflow-hidden">
             <Image
@@ -58,12 +58,9 @@ export default async function BlogPage(props: unknown) {
         )}
 
         <div className="p-6 sm:p-10">
-          {/* Blog Title */}
           <h1 className="text-5xl font-extrabold text-gray-900 leading-tight mb-4">
             {blog.title}
           </h1>
-
-          {/* Published Date */}
           <p className="text-md text-gray-500 mb-10 border-b pb-4 border-gray-100">
             Published:{" "}
             <time dateTime={blog.published} className="font-medium text-gray-600">
@@ -74,8 +71,6 @@ export default async function BlogPage(props: unknown) {
               })}
             </time>
           </p>
-
-          {/* Blog Content */}
           <div className="prose prose-lg max-w-none text-gray-800">
             <p className="leading-relaxed whitespace-pre-line font-serif text-xl">
               {blog.content}

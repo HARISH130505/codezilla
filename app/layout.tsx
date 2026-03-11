@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Archivo_Black, Passion_One } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Archivo_Black,
+  Passion_One,
+} from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,8 +30,8 @@ const passionOne = Passion_One({
 });
 
 export const metadata: Metadata = {
-  title: "CodeZilla",
-  description: "Official Website of CodeZilla RMP",
+  title: "Codezilla — Mozilla Campus Club · SRMIST Ramapuram",
+  description: "Official website of Codezilla, the Mozilla Campus Club at SRMIST Ramapuram. Join 40 active members or follow 3,000+ community audience for events, workshops and releases.",
 };
 
 export default function RootLayout({
@@ -39,9 +42,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${archivoBlack.variable} ${passionOne.variable} antialiased min-h-screen flex flex-col`}
       >
-        <Navbar />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );
