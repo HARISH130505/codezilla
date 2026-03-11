@@ -4,6 +4,20 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+type Particle = {
+  x: number;
+  y: number;
+  size: number;
+  speedX: number;
+  speedY: number;
+  color: string;
+  waveOffset: number;
+  orbitRadius: number;
+  orbitSpeed: number;
+  orbitAngle: number;
+  type: "normal" | "orbit" | "wave";
+};
+
 const Page = () => {
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
 
@@ -32,7 +46,7 @@ const Page = () => {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    const particles: any[] = [];
+    const particles: Particle[] = [];
     const particleCount = 150;
     const mouse = { x: 0, y: 0, radius: 120 };
 
@@ -73,6 +87,7 @@ const Page = () => {
 
           if (distance < 100) {
             const opacity = 0.15 * (1 - distance / 100);
+
             ctx.strokeStyle = `rgba(251,146,60,${opacity})`;
             ctx.lineWidth = 0.5;
 
@@ -85,7 +100,7 @@ const Page = () => {
       }
     };
 
-    const drawParticle = (particle: any) => {
+    const drawParticle = (particle: Particle) => {
       const gradient = ctx.createRadialGradient(
         particle.x,
         particle.y,
@@ -178,8 +193,11 @@ const Page = () => {
       className="min-h-screen flex items-center justify-center px-4 py-10 relative overflow-hidden bg-gradient-to-b from-[#fff4e6] via-[#fff7ed] to-[#fffbeb]"
       onMouseMove={handleMouseMove}
     >
-      {/* Canvas background */}
-      <canvas ref={canvasRef} className="absolute inset-0 z-0 w-full h-full" />
+      {/* Canvas */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full z-0"
+      />
 
       {/* Glow */}
       <motion.div
@@ -211,9 +229,8 @@ const Page = () => {
 
           <p className="text-gray-700 leading-relaxed">
             Codezilla is a Mozilla Campus Community in SRMIST Ramapuram,
-            providing an open-source platform for students to develop their
-            technical knowledge and skills through technical events and
-            hands-on sessions.
+            providing an open-source platform where students develop technical
+            skills through events, projects, and hands-on sessions.
           </p>
         </div>
 
