@@ -5,7 +5,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const Page = () => {
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+  const [mousePos, setMousePos] = useState<{ x: number; y: number }>({
+    x: 50,
+    y: 50,
+  });
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -19,7 +22,7 @@ const Page = () => {
       className="min-h-screen flex items-center justify-center px-4 py-10 relative overflow-hidden bg-gradient-to-b from-[#fff4e6] via-[#fff7ed] to-[#fffbeb]"
       onMouseMove={handleMouseMove}
     >
-      {/* Interactive soft orange glow */}
+      {/* Interactive glow */}
       <motion.div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -30,7 +33,7 @@ const Page = () => {
         transition={{ duration: 0.6 }}
       />
 
-      {/* Brand orange blobs */}
+      {/* Floating orange blob 1 */}
       <motion.div
         initial={{ opacity: 0.55, x: -220, y: -180 }}
         animate={{ x: 15, y: -25, opacity: [0.5, 0.85, 0.6] }}
@@ -42,6 +45,8 @@ const Page = () => {
         }}
         className="pointer-events-none absolute -top-32 -left-28 w-80 h-80 rounded-full bg-orange-300/45 blur-3xl"
       />
+
+      {/* Floating orange blob 2 */}
       <motion.div
         initial={{ opacity: 0.5, x: 260, y: 200 }}
         animate={{ x: -10, y: 35, opacity: [0.45, 0.8, 0.55] }}
@@ -54,10 +59,10 @@ const Page = () => {
         className="pointer-events-none absolute bottom-0 right-0 w-96 h-96 rounded-full bg-amber-300/40 blur-3xl"
       />
 
-      {/* Very light overlay */}
+      {/* Light overlay */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/70" />
 
-      {/* Hero card (same structure as your previous one, recolored) */}
+      {/* Hero Card */}
       <motion.div
         initial={{ opacity: 0, y: 40, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -70,13 +75,13 @@ const Page = () => {
       >
         <div className="pointer-events-none absolute inset-0 border border-orange-200/60 rounded-2xl" />
 
-        {/* Left text column */}
+        {/* Left text */}
         <motion.div
           initial={{ opacity: 0, x: -40, scale: 0.95 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
           whileHover={{ x: 10, scale: 1.03 }}
-          className="flex-1 text-center lg:text-left space-y-4 cursor-pointer"
+          className="flex-1 text-center lg:text-left space-y-4"
         >
           <motion.h1
             initial={{ textShadow: "0 0 0px #fb923c" }}
@@ -96,7 +101,7 @@ const Page = () => {
               scale: 1.08,
               textShadow: "0 0 18px #fb923c",
             }}
-            className="text-slate-900 text-3xl sm:text-4xl lg:text-5xl font-passion tracking-wide transition-all"
+            className="text-slate-900 text-3xl sm:text-4xl lg:text-5xl font-passion tracking-wide"
           >
             CODEZILLA
           </motion.h1>
@@ -109,25 +114,26 @@ const Page = () => {
               scale: 1.05,
               color: "#ea580c",
             }}
-            className="text-orange-500 text-lg sm:text-xl font-semibold transition-all"
+            className="text-orange-500 text-lg sm:text-xl font-semibold"
           >
             Reintroducing Codezilla
           </motion.p>
 
           <motion.p
             whileHover={{ scale: 1.03, x: 5 }}
-            className="text-gray-700 text-base sm:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0 transition-all"
+            className="text-gray-700 text-base sm:text-lg leading-relaxed max-w-prose mx-auto lg:mx-0"
           >
-            Codezilla is a Mozilla Campus Community in SRMIST, Ramapuram, designed
-            to provide the youth, in and around the campus, an open-source
-            platform where they can develop their technical knowledge and skill
-            set for a better career. We organize technical events and hands-on
-            sessions to scale up their expertise. It provides a good environment
-            to engage students in different activities and develop their projects.
+            Codezilla is a Mozilla Campus Community in SRMIST, Ramapuram,
+            designed to provide the youth, in and around the campus, an
+            open-source platform where they can develop their technical
+            knowledge and skill set for a better career. We organize technical
+            events and hands-on sessions to scale up their expertise. It
+            provides a good environment to engage students in different
+            activities and develop their projects.
           </motion.p>
         </motion.div>
 
-        {/* Right image column */}
+        {/* Right image */}
         <motion.div
           initial={{ opacity: 0, x: 40, scale: 0.95 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -136,13 +142,11 @@ const Page = () => {
             scale: 1.08,
             boxShadow: "0 0 35px rgba(248,113,22,0.6)",
           }}
-          className="flex-shrink-0 w-full lg:w-1/2 flex justify-center cursor-pointer transition-all duration-300"
+          className="flex-shrink-0 w-full lg:w-1/2 flex justify-center transition-all duration-300"
         >
           <motion.div
-            whileHover={{
-              rotateY: 5,
-            }}
-            className="relative rounded-2xl p-[3px] bg-gradient-to-tr from-orange-400 via-amber-300 to-orange-200 shadow-[0_0_25px_rgba(248,113,22,0.55)] transition-all"
+            whileHover={{ rotateY: 5 }}
+            className="relative rounded-2xl p-[3px] bg-gradient-to-tr from-orange-400 via-amber-300 to-orange-200 shadow-[0_0_25px_rgba(248,113,22,0.55)]"
           >
             <Image
               src="/photo.jpg"
