@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, type Transition } from "framer-motion";
+import { motion, AnimatePresence, type Transition } from "framer-motion";
+import { Menu, X, LogIn } from "lucide-react";
 
 const tx = (delay = 0): Transition => ({
   duration: 0.6,
@@ -11,12 +12,104 @@ const tx = (delay = 0): Transition => ({
   delay,
 });
 
+const NAV_LINKS = [
+  { label: "About",   href: "/about" },
+  { label: "Events",  href: "/events" },
+  { label: "Blogs",   href: "/blogs" },
+  { label: "Members", href: "/members" },
+  { label: "Contact", href: "/contact" },
+];
+
 export default function HomePage() {
   const [mode, setMode] = useState<"member" | "participant">("member");
+  const [menuOpen, setMenuOpen] = useState(false);
   const isMember = mode === "member";
 
   return (
     <div className="relative min-h-screen bg-zinc-950 overflow-hidden flex flex-col">
+
+      {/* ── Navbar ─────────────────────────────── */}
+      <nav className="relative z-20 w-full">
+        <div className="max-w-6xl mx-auto px-5 md:px-8 lg:px-10 h-14 flex items-center justify-between">
+
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
+            <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-orange-400/30 group-hover:border-orange-400/60 transition-colors duration-200">
+              <Image src="/branding/codezilla with fox 2.png" alt="Codezilla" fill sizes="32px" className="object-contain" priority />
+            </div>
+            <span className="font-passion text-lg text-white tracking-wide group-hover:text-orange-300 transition-colors duration-200">
+              CODEZILLA
+            </span>
+          </Link>
+
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-1">
+            {NAV_LINKS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="px-3.5 py-1.5 rounded-md text-sm font-medium text-white/55 hover:text-white/90 transition-colors duration-150"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Member login CTA */}
+          <div className="flex items-center gap-3">
+            <Link
+              href="/login"
+              className="hidden md:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-white/[0.12] bg-white/[0.05] text-white/70 text-xs font-medium hover:text-white hover:bg-white/[0.1] hover:border-white/20 transition-all duration-150"
+            >
+              <LogIn size={12} />
+              Member login
+            </Link>
+
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setMenuOpen((v) => !v)}
+              className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.06] transition-colors"
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile dropdown */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              key="mobile-menu"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+              className="md:hidden absolute top-14 inset-x-0 bg-zinc-950/95 backdrop-blur-xl border-b border-white/[0.06] px-5 py-4 space-y-1"
+            >
+              {NAV_LINKS.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center px-3 py-2.5 rounded-lg text-sm font-medium text-white/60 hover:text-white hover:bg-white/[0.05] transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <div className="pt-2 border-t border-white/[0.06] mt-2">
+                <Link
+                  href="/login"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-white/[0.1] bg-white/[0.05] text-white/80 text-sm font-medium"
+                >
+                  <LogIn size={14} /> Member login
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
 
       {/* ── Static background ──────────────────── */}
       {/* Grid */}
@@ -79,7 +172,7 @@ export default function HomePage() {
               Codezilla
             </h1>
             <h1 className="font-passion text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-200 bg-clip-text text-transparent leading-[1.1]">
-              where campus ships.
+              The premiere Open source club of SRM Ramapuram.
             </h1>
           </motion.div>
 
