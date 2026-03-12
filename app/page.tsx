@@ -21,9 +21,7 @@ const NAV_LINKS = [
 ];
 
 export default function HomePage() {
-  const [mode, setMode] = useState<"member" | "participant">("member");
   const [menuOpen, setMenuOpen] = useState(false);
-  const isMember = mode === "member";
 
   return (
     <div className="relative min-h-screen bg-zinc-950 overflow-hidden flex flex-col">
@@ -55,7 +53,7 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Member login CTA */}
+          {/* Right CTAs */}
           <div className="flex items-center gap-3">
             <Link
               href="/login"
@@ -65,7 +63,6 @@ export default function HomePage() {
               Member login
             </Link>
 
-            {/* Mobile hamburger */}
             <button
               onClick={() => setMenuOpen((v) => !v)}
               className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.06] transition-colors"
@@ -97,13 +94,20 @@ export default function HomePage() {
                   {item.label}
                 </Link>
               ))}
-              <div className="pt-2 border-t border-white/[0.06] mt-2">
+              <div className="pt-2 border-t border-white/[0.06] mt-2 space-y-2">
                 <Link
                   href="/login"
                   onClick={() => setMenuOpen(false)}
                   className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-white/[0.1] bg-white/[0.05] text-white/80 text-sm font-medium"
                 >
                   <LogIn size={14} /> Member login
+                </Link>
+                <Link
+                  href="/recruit"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-orange-500 text-white text-sm font-semibold"
+                >
+                  Apply to join
                 </Link>
               </div>
             </motion.div>
@@ -112,7 +116,6 @@ export default function HomePage() {
       </nav>
 
       {/* ── Static background ──────────────────── */}
-      {/* Grid */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -121,11 +124,8 @@ export default function HomePage() {
           backgroundSize: "48px 48px",
         }}
       />
-      {/* Top-center glow */}
       <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[800px] h-72 bg-orange-500/20 blur-[120px] rounded-full" />
-      {/* Bottom-right accent */}
       <div className="pointer-events-none absolute bottom-0 right-0 w-96 h-96 bg-amber-400/10 blur-[100px] rounded-full" />
-      {/* Bottom-left accent */}
       <div className="pointer-events-none absolute bottom-0 left-0 w-64 h-64 bg-orange-600/08 blur-[80px] rounded-full" />
 
       {/* ── Content ────────────────────────────── */}
@@ -148,7 +148,7 @@ export default function HomePage() {
             Mozilla Campus Club · SRMIST Ramapuram
           </motion.div>
 
-          {/* Logo + Headline */}
+          {/* Headline */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -157,107 +157,55 @@ export default function HomePage() {
           >
             <div className="flex items-center justify-center lg:justify-start gap-3 mb-3">
               <div className="relative h-10 w-10 rounded-xl overflow-hidden border border-orange-400/40">
-                <Image
-                  src="/branding/codezilla with fox 2.png"
-                  alt="Codezilla"
-                  fill
-                  sizes="40px"
-                  className="object-contain"
-                />
+                <Image src="/branding/codezilla with fox 2.png" alt="Codezilla" fill sizes="40px" className="object-contain" />
               </div>
               <span className="text-[11px] font-semibold text-orange-300/70 uppercase tracking-[0.2em]">Official club portal</span>
             </div>
-
             <h1 className="font-passion text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05]">
               Codezilla
             </h1>
-            <h1 className="font-passion text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-200 bg-clip-text text-transparent leading-[1.1]">
-              The premiere Open source club of SRM Ramapuram.
+            <h1 className="font-passion text-4xl md:text-5xl lg:text-6xl text-orange-500 leading-[1.1]">
+              The premiere open source club of SRM Ramapuram.
             </h1>
           </motion.div>
 
-          {/* Body copy */}
+          {/* Body */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={tx(0.16)}
             className="text-sm md:text-base text-white/50 leading-relaxed max-w-lg mx-auto lg:mx-0"
           >
-            Pick your lane. Join as an{" "}
-            <span className="text-orange-300 font-medium">active member</span> — one of 40 who
-            build, lead and ship — or follow along as part of our{" "}
-            <span className="text-orange-300 font-medium">3,000-strong community</span> audience
-            for events, workshops and releases.
+            40 active members. 3,000-strong community. We build, ship and learn in the open —
+            workshops, hackathons, and real projects that matter on campus and beyond.
           </motion.p>
-
-          {/* Mode toggle */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={tx(0.22)}
-            className="inline-flex rounded-full bg-white/[0.05] border border-white/[0.08] p-1 text-[12px]"
-          >
-            {(["member", "participant"] as const).map((m) => (
-              <button
-                key={m}
-                type="button"
-                onClick={() => setMode(m)}
-                className={`px-5 py-1.5 rounded-full transition-all duration-200 font-medium capitalize ${
-                  mode === m
-                    ? "bg-gradient-to-r from-orange-500 to-amber-400 text-black shadow"
-                    : "text-white/50 hover:text-white/80"
-                }`}
-              >
-                {m === "member" ? "Club member" : "Event participant"}
-              </button>
-            ))}
-          </motion.div>
 
           {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={tx(0.28)}
+            transition={tx(0.24)}
             className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start"
           >
-            {isMember ? (
-              <>
-                <Link
-                  href="/signup"
-                  className="inline-flex items-center justify-center rounded-xl bg-orange-500 hover:bg-orange-600 px-7 py-3 text-sm font-semibold text-white shadow-[0_8px_32px_rgba(249,115,22,0.45)] transition-all duration-200 active:scale-95"
-                >
-                  Join as member
-                </Link>
-                <Link
-                  href="/login"
-                  className="inline-flex items-center justify-center rounded-xl border border-white/[0.1] bg-white/[0.04] hover:bg-white/[0.08] px-7 py-3 text-sm font-medium text-white/80 transition-all duration-200"
-                >
-                  Member login
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link
-                  href="/events"
-                  className="inline-flex items-center justify-center rounded-xl bg-amber-400 hover:bg-amber-300 px-7 py-3 text-sm font-semibold text-black shadow-[0_8px_32px_rgba(251,191,36,0.4)] transition-all duration-200 active:scale-95"
-                >
-                  See upcoming events
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-xl border border-white/[0.1] bg-white/[0.04] hover:bg-white/[0.08] px-7 py-3 text-sm font-medium text-white/80 transition-all duration-200"
-                >
-                  Talk to the team
-                </Link>
-              </>
-            )}
+            <Link
+              href="/recruit"
+              className="inline-flex items-center justify-center rounded-xl bg-orange-500 hover:bg-orange-600 px-7 py-3 text-sm font-semibold text-white shadow-[0_8px_32px_rgba(249,115,22,0.4)] transition-all duration-200 active:scale-95"
+            >
+              Apply to join →
+            </Link>
+            <Link
+              href="/login"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.1] bg-white/[0.04] hover:bg-white/[0.08] px-7 py-3 text-sm font-medium text-white/70 transition-all duration-200"
+            >
+              <LogIn size={14} /> Member login
+            </Link>
           </motion.div>
 
           {/* Trust chips */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={tx(0.36)}
+            transition={tx(0.32)}
             className="flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-1.5 text-[11px] text-white/30"
           >
             <span>✅ Digital Codezilla ID</span>
@@ -276,8 +224,6 @@ export default function HomePage() {
           className="w-full lg:w-[44%] max-w-md"
         >
           <div className="relative rounded-2xl border border-white/[0.07] bg-white/[0.04] backdrop-blur-xl p-5 space-y-4 shadow-[0_32px_80px_rgba(0,0,0,0.6)]">
-
-            {/* Card header */}
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-orange-300/60 mb-0.5">Live on campus</p>
@@ -289,23 +235,15 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Photo */}
             <div className="rounded-xl overflow-hidden border border-white/[0.06]">
-              <Image
-                src="/photo.jpg"
-                alt="Codezilla club"
-                width={640}
-                height={380}
-                className="w-full h-48 md:h-52 object-cover"
-              />
+              <Image src="/photo.jpg" alt="Codezilla club" width={640} height={380} className="w-full h-48 md:h-52 object-cover" />
             </div>
 
-            {/* Stats */}
             <div className="grid grid-cols-3 gap-3">
               {[
-                { label: "Members",   value: "40+",  sub: "active core" },
-                { label: "Community", value: "3K+",  sub: "audience" },
-                { label: "Events",    value: "20+",  sub: "workshops" },
+                { label: "Members",   value: "40+", sub: "active core" },
+                { label: "Community", value: "3K+", sub: "audience" },
+                { label: "Events",    value: "20+", sub: "workshops" },
               ].map(({ label, value, sub }) => (
                 <div key={label} className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-3 text-center">
                   <p className="text-[9px] uppercase tracking-widest text-orange-300/50 mb-0.5">{label}</p>
@@ -315,7 +253,6 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* Quote */}
             <div className="rounded-xl border border-orange-400/15 bg-orange-500/[0.06] px-4 py-3 flex items-start gap-3">
               <div className="mt-0.5 h-6 w-6 flex-shrink-0 rounded-full bg-orange-500 flex items-center justify-center text-[10px] font-black text-white">CZ</div>
               <div>
