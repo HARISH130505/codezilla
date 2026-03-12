@@ -12,12 +12,6 @@ interface Blog {
   published: string;
 }
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
-
 async function fetchBlogBySlug(slug: string): Promise<Blog | null> {
   if (!supabase) return null;
 
@@ -32,8 +26,12 @@ async function fetchBlogBySlug(slug: string): Promise<Blog | null> {
   return data as Blog;
 }
 
-export default async function BlogPage({ params }: PageProps) {
-  const slug = params.slug;
+export default async function BlogPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
   const blog = await fetchBlogBySlug(slug);
 
@@ -49,8 +47,8 @@ export default async function BlogPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 py-12">
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-zinc-900 shadow-xl dark:shadow-[0_20px_60px_rgba(0,0,0,0.6)] rounded-lg overflow-hidden border border-zinc-100 dark:border-zinc-800">
-        
+      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-zinc-900 shadow-xl rounded-lg overflow-hidden border border-zinc-100 dark:border-zinc-800">
+
         {blog.imgsrc && (
           <div className="mb-8 max-h-[450px] overflow-hidden">
             <Image
