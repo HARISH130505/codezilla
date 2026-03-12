@@ -24,18 +24,30 @@ export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-zinc-950 overflow-hidden flex flex-col">
+    <div className="relative min-h-screen bg-zinc-50 overflow-hidden flex flex-col">
 
-      {/* ── Navbar ─────────────────────────────── */}
-      <nav className="relative z-20 w-full">
+      {/* ── Subtle grid background ── */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px)",
+          backgroundSize: "48px 48px",
+        }}
+      />
+      {/* Top-center orange glow */}
+      <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-64 bg-orange-400/10 blur-[100px] rounded-full" />
+
+      {/* ── Navbar ── */}
+      <nav className="relative z-20 w-full border-b border-zinc-200/70 bg-white/70 backdrop-blur-md">
         <div className="max-w-6xl mx-auto px-5 md:px-8 lg:px-10 h-14 flex items-center justify-between">
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
-            <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-orange-400/30 group-hover:border-orange-400/60 transition-colors duration-200">
+            <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-orange-400/40 group-hover:border-orange-500 transition-colors duration-200">
               <Image src="/branding/codezilla with fox 2.png" alt="Codezilla" fill sizes="32px" className="object-contain" priority />
             </div>
-            <span className="font-passion text-lg text-white tracking-wide group-hover:text-orange-300 transition-colors duration-200">
+            <span className="font-passion text-lg text-zinc-900 tracking-wide group-hover:text-orange-500 transition-colors duration-200">
               CODEZILLA
             </span>
           </Link>
@@ -46,7 +58,7 @@ export default function HomePage() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-3.5 py-1.5 rounded-md text-sm font-medium text-white/55 hover:text-white/90 transition-colors duration-150"
+                className="px-3.5 py-1.5 rounded-md text-sm font-medium text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors duration-150"
               >
                 {item.label}
               </Link>
@@ -57,15 +69,14 @@ export default function HomePage() {
           <div className="flex items-center gap-3">
             <Link
               href="/login"
-              className="hidden md:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-white/[0.12] bg-white/[0.05] text-white/70 text-xs font-medium hover:text-white hover:bg-white/[0.1] hover:border-white/20 transition-all duration-150"
+              className="hidden md:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-zinc-200 bg-white text-zinc-600 text-xs font-medium hover:text-zinc-900 hover:border-zinc-300 hover:bg-zinc-50 transition-all duration-150 shadow-sm"
             >
               <LogIn size={12} />
               Member login
             </Link>
-
             <button
               onClick={() => setMenuOpen((v) => !v)}
-              className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.06] transition-colors"
+              className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-zinc-200 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors"
               aria-label="Toggle menu"
             >
               {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -82,23 +93,23 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-              className="md:hidden absolute top-14 inset-x-0 bg-zinc-950/95 backdrop-blur-xl border-b border-white/[0.06] px-5 py-4 space-y-1"
+              className="md:hidden absolute top-14 inset-x-0 bg-white border-b border-zinc-200 px-5 py-4 space-y-1 shadow-md"
             >
               {NAV_LINKS.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center px-3 py-2.5 rounded-lg text-sm font-medium text-white/60 hover:text-white hover:bg-white/[0.05] transition-colors"
+                  className="flex items-center px-3 py-2.5 rounded-lg text-sm font-medium text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors"
                 >
                   {item.label}
                 </Link>
               ))}
-              <div className="pt-2 border-t border-white/[0.06] mt-2 space-y-2">
+              <div className="pt-2 border-t border-zinc-100 mt-2 space-y-2">
                 <Link
                   href="/login"
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-white/[0.1] bg-white/[0.05] text-white/80 text-sm font-medium"
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-700 text-sm font-medium"
                 >
                   <LogIn size={14} /> Member login
                 </Link>
@@ -115,20 +126,7 @@ export default function HomePage() {
         </AnimatePresence>
       </nav>
 
-      {/* ── Static background ──────────────────── */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
-      <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[800px] h-72 bg-orange-500/20 blur-[120px] rounded-full" />
-      <div className="pointer-events-none absolute bottom-0 right-0 w-96 h-96 bg-amber-400/10 blur-[100px] rounded-full" />
-      <div className="pointer-events-none absolute bottom-0 left-0 w-64 h-64 bg-orange-600/08 blur-[80px] rounded-full" />
-
-      {/* ── Content ────────────────────────────── */}
+      {/* ── Content ── */}
       <main className="relative z-10 flex-1 max-w-6xl mx-auto w-full px-5 md:px-8 lg:px-10 py-16 md:py-24 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
         {/* Left column */}
@@ -139,11 +137,11 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={tx(0)}
-            className="inline-flex items-center gap-2 rounded-full bg-white/[0.05] border border-orange-500/30 px-3.5 py-1.5 text-[11px] font-semibold text-orange-300 uppercase tracking-widest backdrop-blur-sm"
+            className="inline-flex items-center gap-2 rounded-full bg-orange-50 border border-orange-200 px-3.5 py-1.5 text-[11px] font-semibold text-orange-600 uppercase tracking-widest"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75 animate-ping" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-orange-300" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-orange-500" />
             </span>
             Mozilla Campus Club · SRMIST Ramapuram
           </motion.div>
@@ -156,12 +154,12 @@ export default function HomePage() {
             className="space-y-2"
           >
             <div className="flex items-center justify-center lg:justify-start gap-3 mb-3">
-              <div className="relative h-10 w-10 rounded-xl overflow-hidden border border-orange-400/40">
+              <div className="relative h-10 w-10 rounded-xl overflow-hidden border border-orange-400/30">
                 <Image src="/branding/codezilla with fox 2.png" alt="Codezilla" fill sizes="40px" className="object-contain" />
               </div>
-              <span className="text-[11px] font-semibold text-orange-300/70 uppercase tracking-[0.2em]">Official club portal</span>
+              <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-[0.2em]">Official club portal</span>
             </div>
-            <h1 className="font-passion text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05]">
+            <h1 className="font-passion text-5xl md:text-6xl lg:text-7xl text-zinc-900 leading-[1.05]">
               Codezilla
             </h1>
             <h1 className="font-passion text-4xl md:text-5xl lg:text-6xl text-orange-500 leading-[1.1]">
@@ -174,7 +172,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={tx(0.16)}
-            className="text-sm md:text-base text-white/50 leading-relaxed max-w-lg mx-auto lg:mx-0"
+            className="text-sm md:text-base text-zinc-500 leading-relaxed max-w-lg mx-auto lg:mx-0"
           >
             40 active members. 3,000-strong community. We build, ship and learn in the open —
             workshops, hackathons, and real projects that matter on campus and beyond.
@@ -189,13 +187,13 @@ export default function HomePage() {
           >
             <Link
               href="/recruit"
-              className="inline-flex items-center justify-center rounded-xl bg-orange-500 hover:bg-orange-600 px-7 py-3 text-sm font-semibold text-white shadow-[0_8px_32px_rgba(249,115,22,0.4)] transition-all duration-200 active:scale-95"
+              className="inline-flex items-center justify-center rounded-xl bg-orange-500 hover:bg-orange-600 px-7 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_rgba(249,115,22,0.35)] transition-all duration-200 active:scale-95"
             >
               Apply to join →
             </Link>
             <Link
               href="/login"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.1] bg-white/[0.04] hover:bg-white/[0.08] px-7 py-3 text-sm font-medium text-white/70 transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-200 bg-white hover:bg-zinc-50 px-7 py-3 text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-all duration-200 shadow-sm"
             >
               <LogIn size={14} /> Member login
             </Link>
@@ -206,12 +204,12 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={tx(0.32)}
-            className="flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-1.5 text-[11px] text-white/30"
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-x-5 gap-y-1.5 text-[11px] text-zinc-400"
           >
             <span>✅ Digital Codezilla ID</span>
-            <span className="h-1 w-1 rounded-full bg-white/20" />
+            <span className="h-1 w-1 rounded-full bg-zinc-300" />
             <span>✅ Fast check-in at events</span>
-            <span className="h-1 w-1 rounded-full bg-white/20" />
+            <span className="h-1 w-1 rounded-full bg-zinc-300" />
             <span>✅ Track your journey</span>
           </motion.div>
         </div>
@@ -223,19 +221,19 @@ export default function HomePage() {
           transition={tx(0.12)}
           className="w-full lg:w-[44%] max-w-md"
         >
-          <div className="relative rounded-2xl border border-white/[0.07] bg-white/[0.04] backdrop-blur-xl p-5 space-y-4 shadow-[0_32px_80px_rgba(0,0,0,0.6)]">
+          <div className="relative rounded-2xl border border-zinc-200 bg-white p-5 space-y-4 shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-orange-300/60 mb-0.5">Live on campus</p>
-                <p className="text-sm font-semibold text-white/90">Codezilla community snapshot</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-orange-500/70 mb-0.5">Live on campus</p>
+                <p className="text-sm font-semibold text-zinc-800">Codezilla community snapshot</p>
               </div>
-              <div className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-2.5 py-1 text-[10px] text-white/50">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-[10px] text-zinc-500">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 open source first
               </div>
             </div>
 
-            <div className="rounded-xl overflow-hidden border border-white/[0.06]">
+            <div className="rounded-xl overflow-hidden border border-zinc-100">
               <Image src="/photo.jpg" alt="Codezilla club" width={640} height={380} className="w-full h-48 md:h-52 object-cover" />
             </div>
 
@@ -245,21 +243,21 @@ export default function HomePage() {
                 { label: "Community", value: "3K+", sub: "audience" },
                 { label: "Events",    value: "20+", sub: "workshops" },
               ].map(({ label, value, sub }) => (
-                <div key={label} className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-3 text-center">
-                  <p className="text-[9px] uppercase tracking-widest text-orange-300/50 mb-0.5">{label}</p>
-                  <p className="text-lg font-passion text-white/90">{value}</p>
-                  <p className="text-[9px] text-white/25 mt-0.5">{sub}</p>
+                <div key={label} className="rounded-xl border border-zinc-100 bg-zinc-50 p-3 text-center">
+                  <p className="text-[9px] uppercase tracking-widest text-orange-500/60 mb-0.5">{label}</p>
+                  <p className="text-lg font-passion text-zinc-800">{value}</p>
+                  <p className="text-[9px] text-zinc-400 mt-0.5">{sub}</p>
                 </div>
               ))}
             </div>
 
-            <div className="rounded-xl border border-orange-400/15 bg-orange-500/[0.06] px-4 py-3 flex items-start gap-3">
+            <div className="rounded-xl border border-orange-100 bg-orange-50 px-4 py-3 flex items-start gap-3">
               <div className="mt-0.5 h-6 w-6 flex-shrink-0 rounded-full bg-orange-500 flex items-center justify-center text-[10px] font-black text-white">CZ</div>
               <div>
-                <p className="text-[11px] font-medium text-white/80 mb-1">
+                <p className="text-[11px] font-medium text-zinc-700 mb-1">
                   &ldquo;This portal is how we recognise you as Codezilla.&rdquo;
                 </p>
-                <p className="text-[10px] text-white/35 leading-relaxed">
+                <p className="text-[10px] text-zinc-400 leading-relaxed">
                   Create your profile once, bring it to every event.
                 </p>
               </div>

@@ -45,13 +45,12 @@ export default function LoginPage() {
   };
 
   const inputCls =
-    "w-full rounded-xl border border-white/[0.1] bg-white/[0.06] pl-10 pr-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-orange-400/50 focus:border-orange-400/50 transition";
+    "w-full rounded-xl border border-zinc-200 bg-white pl-10 pr-4 py-2.5 text-sm text-zinc-800 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-orange-400/40 focus:border-orange-400 transition shadow-sm";
 
   return (
-    <div className="min-h-screen bg-zinc-950 flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden">
+    <div className="min-h-screen bg-zinc-50 flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden">
       {/* bg glow */}
-      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-60 bg-orange-500/15 blur-3xl rounded-full" />
-      <div className="pointer-events-none absolute bottom-0 right-0 w-64 h-64 bg-amber-400/10 blur-3xl rounded-full" />
+      <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-60 bg-orange-400/10 blur-3xl rounded-full" />
 
       <motion.div
         initial={{ opacity: 0, y: 28 }}
@@ -65,34 +64,34 @@ export default function LoginPage() {
             <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-orange-400/40">
               <Image src="/branding/codezilla with fox 2.png" alt="Codezilla" fill sizes="32px" className="object-contain" />
             </div>
-            <span className="font-passion text-lg text-white/90 tracking-wide">CODEZILLA</span>
+            <span className="font-passion text-lg text-zinc-800 tracking-wide">CODEZILLA</span>
           </div>
-          <h1 className="font-passion text-3xl text-white mb-1">Welcome back</h1>
-          <p className="text-xs text-white/40">Sign in to your Codezilla account</p>
+          <h1 className="font-passion text-3xl text-zinc-900 mb-1">Welcome back</h1>
+          <p className="text-xs text-zinc-400">Sign in to your Codezilla member account</p>
         </div>
 
         {/* Card */}
-        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.04] backdrop-blur-xl p-6 space-y-4">
+        <div className="rounded-2xl border border-zinc-200 bg-white p-6 space-y-4 shadow-sm">
           {error && (
-            <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-xs text-red-300">
+            <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs text-red-600">
               {error}
             </div>
           )}
 
           <form onSubmit={handleEmailLogin} className="space-y-3">
             <div className="relative">
-              <Mail size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
+              <Mail size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-400" />
               <input type="email" required placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className={inputCls} />
             </div>
             <div className="relative">
-              <Lock size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
+              <Lock size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-400" />
               <input type="password" required placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className={inputCls} />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-orange-500 hover:bg-orange-600 disabled:opacity-60 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(249,115,22,0.35)] transition-all duration-200 active:scale-95"
+              className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-orange-500 hover:bg-orange-600 disabled:opacity-60 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_4px_16px_rgba(249,115,22,0.3)] transition-all duration-200 active:scale-95"
             >
               {loading ? <Loader2 size={15} className="animate-spin" /> : <LogIn size={15} />}
               Sign in
@@ -100,24 +99,24 @@ export default function LoginPage() {
           </form>
 
           <div className="relative flex items-center gap-3">
-            <div className="flex-1 h-px bg-white/[0.07]" />
-            <span className="text-[11px] text-white/25 uppercase tracking-wider">or</span>
-            <div className="flex-1 h-px bg-white/[0.07]" />
+            <div className="flex-1 h-px bg-zinc-100" />
+            <span className="text-[11px] text-zinc-400 uppercase tracking-wider">or</span>
+            <div className="flex-1 h-px bg-zinc-100" />
           </div>
 
           <button
             onClick={handleGoogleLogin}
             disabled={loading}
-            className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.1] bg-white/[0.05] hover:bg-white/[0.09] px-5 py-2.5 text-sm text-white/80 font-medium transition-all duration-200"
+            className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 px-5 py-2.5 text-sm text-zinc-700 font-medium transition-all duration-200"
           >
             <FaGoogle size={13} />
             Continue with Google
           </button>
 
-          <p className="text-center text-[11px] text-white/30">
+          <p className="text-center text-[11px] text-zinc-400">
             No account?{" "}
-            <Link href="/signup" className="text-orange-400 hover:text-orange-300 transition-colors">
-              Create one free
+            <Link href="/recruit" className="text-orange-500 hover:text-orange-600 transition-colors">
+              Apply for membership
             </Link>
           </p>
         </div>
