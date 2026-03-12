@@ -64,8 +64,8 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative px-3.5 py-1.5 rounded-md text-sm font-medium transition-colors duration-150 ${
-                    active ? "text-orange-500" : "text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100"
+                  className={`relative px-3.5 py-1.5 rounded-md text-sm font-semibold transition-colors duration-150 ${
+                    active ? "text-orange-500" : "text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100"
                   }`}
                 >
                   {active && (
