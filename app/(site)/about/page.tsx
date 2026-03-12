@@ -115,27 +115,17 @@ export default function AboutPage() {
           </p>
         </motion.div>
 
-        <motion.div {...fade(0.1)} className="rounded-2xl overflow-hidden border border-zinc-200/80 bg-zinc-50 p-6 space-y-4">
+        <motion.div {...fade(0.1)} className="rounded-2xl overflow-hidden border border-zinc-200/80 bg-zinc-50 p-6 grid grid-cols-2 gap-4">
           {[
-            { label: "Open source by default", pct: 100 },
-            { label: "Student-led initiatives", pct: 92 },
-            { label: "Hands-on workshops", pct: 85 },
-            { label: "Industry mentors", pct: 70 },
-          ].map(({ label, pct }) => (
-            <div key={label}>
-              <div className="flex justify-between mb-1.5 text-xs text-zinc-500">
-                <span>{label}</span>
-                <span className="text-orange-500 font-semibold">{pct}%</span>
-              </div>
-              <div className="h-1.5 rounded-full bg-zinc-200 overflow-hidden">
-                <motion.div
-                  className="h-full rounded-full bg-gradient-to-r from-orange-400 to-amber-300"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${pct}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.9, ease: "easeOut" }}
-                />
-              </div>
+            { value: "40+",    label: "Active members",      sub: "core club team" },
+            { value: "3K+",    label: "Community audience",  sub: "event followers" },
+            { value: "20+",    label: "Events hosted",       sub: "workshops & talks" },
+            { value: "100%",   label: "Open source",         sub: "everything we ship" },
+          ].map(({ value, label, sub }) => (
+            <div key={label} className="rounded-xl bg-white border border-zinc-100 p-4 flex flex-col gap-1">
+              <span className="font-passion text-3xl text-orange-500 leading-none">{value}</span>
+              <span className="text-xs font-semibold text-zinc-700">{label}</span>
+              <span className="text-[11px] text-zinc-400">{sub}</span>
             </div>
           ))}
         </motion.div>
