@@ -156,7 +156,7 @@ export default function PortalPage() {
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-2.5">
             <div className="relative w-7 h-7 rounded-lg overflow-hidden border border-orange-400/30">
-              <Image src="/branding/codezilla with fox 2.png" alt="Codezilla" fill sizes="28px" className="object-contain" />
+              <Image src="/branding/Copy of codezilla with fox black.png" alt="Codezilla" fill sizes="28px" className="object-contain" />
             </div>
             <span className="font-passion text-base text-white/80 tracking-wide">My Portal</span>
           </div>

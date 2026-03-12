@@ -62,7 +62,7 @@ export default function LoginPage() {
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2.5 mb-4">
             <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-orange-400/40">
-              <Image src="/branding/codezilla with fox 2.png" alt="Codezilla" fill sizes="32px" className="object-contain" />
+              <Image src="/branding/Copy of codezilla with fox black.png" alt="Codezilla" fill sizes="32px" className="object-contain" />
             </div>
             <span className="font-passion text-lg text-zinc-800 tracking-wide">CODEZILLA</span>
           </div>

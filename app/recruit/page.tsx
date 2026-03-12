@@ -77,7 +77,7 @@ export default function RecruitPage() {
           <span className="text-zinc-200">|</span>
           <div className="flex items-center gap-2">
             <div className="relative w-5 h-5 rounded overflow-hidden">
-              <Image src="/branding/codezilla with fox 2.png" alt="Codezilla" fill sizes="20px" className="object-contain" />
+              <Image src="/branding/Copy of codezilla with fox black.png" alt="Codezilla" fill sizes="20px" className="object-contain" />
             </div>
             <span className="text-xs font-semibold text-orange-500 uppercase tracking-widest">Open Recruitment</span>
           </div>

@@ -49,7 +49,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center gap-2.5 group">
             <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-orange-400/30 group-hover:border-orange-400/70 transition-colors duration-200">
-              <Image src="/branding/codezilla with fox 2.png" alt="Codezilla" fill sizes="32px" className="object-contain" priority />
+              <Image src="/branding/Copy of codezilla with fox black.png" alt="Codezilla" fill sizes="32px" className="object-contain" priority />
             </div>
             <span className="font-passion text-lg text-white tracking-wide hidden sm:block group-hover:text-orange-300 transition-colors duration-200">
               CODEZILLA

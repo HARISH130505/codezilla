@@ -36,7 +36,7 @@ export default function Footer() {
             <div className="flex items-center gap-2.5">
               <div className="relative w-7 h-7 rounded-md overflow-hidden border border-orange-400/30">
                 <Image
-                  src="/branding/codezilla with fox 2.png"
+                  src="/branding/Copy of codezilla with fox black.png"
                   alt="Codezilla"
                   fill
                   sizes="28px"

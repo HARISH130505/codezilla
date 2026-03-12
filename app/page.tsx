@@ -39,13 +39,13 @@ export default function HomePage() {
       <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] h-64 bg-orange-400/10 blur-[100px] rounded-full" />
 
       {/* ── Navbar ── */}
-      <nav className="relative z-20 w-full border-b border-zinc-200/70 bg-white/70 backdrop-blur-md">
+      <nav className="relative z-20 w-full border-b border-zinc-200 bg-white">
         <div className="max-w-6xl mx-auto px-5 md:px-8 lg:px-10 h-14 flex items-center justify-between">
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
             <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-orange-400/40 group-hover:border-orange-500 transition-colors duration-200">
-              <Image src="/branding/codezilla with fox 2.png" alt="Codezilla" fill sizes="32px" className="object-contain" priority />
+              <Image src="/branding/Copy of codezilla with fox black.png" alt="Codezilla" fill sizes="32px" className="object-contain" priority />
             </div>
             <span className="font-passion text-lg text-zinc-900 tracking-wide group-hover:text-orange-500 transition-colors duration-200">
               CODEZILLA
@@ -155,7 +155,7 @@ export default function HomePage() {
           >
             <div className="flex items-center justify-center lg:justify-start gap-3 mb-3">
               <div className="relative h-10 w-10 rounded-xl overflow-hidden border border-orange-400/30">
-                <Image src="/branding/codezilla with fox 2.png" alt="Codezilla" fill sizes="40px" className="object-contain" />
+                <Image src="/branding/Copy of codezilla with fox black.png" alt="Codezilla" fill sizes="40px" className="object-contain" />
               </div>
               <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-[0.2em]">Official club portal</span>
             </div>
