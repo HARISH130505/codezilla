@@ -51,7 +51,7 @@ export default function Navbar() {
             <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-zinc-200 group-hover:border-orange-400 transition-colors duration-200">
               <Image src="/branding/Copy of codezilla with fox black.png" alt="Codezilla" fill sizes="32px" className="object-contain" priority />
             </div>
-            <span className="font-passion text-lg text-zinc-900 tracking-wide hidden sm:block group-hover:text-orange-500 transition-colors duration-200">
+            <span className="font-passion text-lg text-black tracking-wide hidden sm:block group-hover:text-orange-500 transition-colors duration-200">
               CODEZILLA
             </span>
           </Link>
@@ -65,7 +65,7 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   className={`relative px-3.5 py-1.5 rounded-md text-sm font-semibold transition-colors duration-150 ${
-                    active ? "text-orange-500" : "text-zinc-700 hover:text-zinc-900 hover:bg-zinc-100"
+                    active ? "text-orange-500" : "text-black hover:text-orange-500 hover:bg-zinc-100"
                   }`}
                 >
                   {active && (
