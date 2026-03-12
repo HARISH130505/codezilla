@@ -53,15 +53,15 @@ export default function ContactPage() {
   }
 
   const inputCls =
-    "w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-2.5 text-sm text-zinc-800 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-orange-400/40 focus:border-orange-300 transition";
+    "w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 px-4 py-2.5 text-sm text-zinc-800 dark:text-zinc-200 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-orange-400/40 focus:border-orange-300 dark:focus:border-orange-500 transition";
 
   return (
-    <div className="bg-[#fafaf9] min-h-screen">
+    <div className="bg-zinc-50 dark:bg-zinc-950 min-h-screen">
 
       {/* Hero */}
       <section className="relative overflow-hidden py-24 md:py-32">
         <div
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0 dark:opacity-20"
           style={{
             backgroundImage:
               "linear-gradient(rgba(0,0,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.03) 1px,transparent 1px)",
@@ -71,15 +71,15 @@ export default function ContactPage() {
         <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-56 bg-orange-400/10 blur-3xl rounded-full" />
         <div className="relative max-w-3xl mx-auto px-5 md:px-8 text-center">
           <motion.div {...fade(0)}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-300/60 bg-orange-50 px-3 py-1 text-[11px] font-semibold text-orange-600 uppercase tracking-widest mb-6">
+            <span className="inline-flex items-center gap-2 rounded-full border border-orange-300/60 dark:border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-3 py-1 text-[11px] font-semibold text-orange-600 dark:text-orange-400 uppercase tracking-widest mb-6">
               <span className="h-1.5 w-1.5 rounded-full bg-orange-500 animate-pulse" />
               Get in touch
             </span>
           </motion.div>
-          <motion.h1 {...fade(0.07)} className="font-passion text-5xl md:text-7xl text-zinc-900 leading-[1.05] mb-5">
+          <motion.h1 {...fade(0.07)} className="font-passion text-5xl md:text-7xl text-zinc-900 dark:text-zinc-100 leading-[1.05] mb-5">
             Talk to <span className="text-orange-500">us.</span>
           </motion.h1>
-          <motion.p {...fade(0.14)} className="text-base md:text-lg text-zinc-500 max-w-xl mx-auto">
+          <motion.p {...fade(0.14)} className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto">
             Have a question, want to collaborate, or just want to say hi? Drop us a message and
             we&apos;ll get back to you quickly.
           </motion.p>
@@ -98,21 +98,21 @@ export default function ContactPage() {
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
-                className="flex items-start gap-4 rounded-2xl border border-zinc-200/70 bg-white p-4 hover:border-orange-200 hover:shadow-sm transition-all duration-200 group"
+                className="flex items-start gap-4 rounded-2xl border border-zinc-200/70 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 hover:border-orange-200 dark:hover:border-orange-500/40 hover:shadow-sm transition-all duration-200 group"
               >
-                <div className="w-9 h-9 flex-shrink-0 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center group-hover:bg-orange-100 transition-colors">
+                <div className="w-9 h-9 flex-shrink-0 rounded-xl bg-orange-50 dark:bg-orange-500/10 border border-orange-100 dark:border-orange-500/20 flex items-center justify-center group-hover:bg-orange-100 dark:group-hover:bg-orange-500/20 transition-colors">
                   <Icon size={15} className="text-orange-500" />
                 </div>
                 <div>
-                  <p className="text-[11px] text-zinc-400 uppercase tracking-wider mb-0.5">{label}</p>
-                  <p className="text-sm font-medium text-zinc-800">{value}</p>
+                  <p className="text-[11px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mb-0.5">{label}</p>
+                  <p className="text-sm font-medium text-zinc-800 dark:text-zinc-200">{value}</p>
                 </div>
               </a>
             ))}
           </div>
 
           <div>
-            <p className="text-[11px] text-zinc-400 uppercase tracking-wider mb-3">Follow us</p>
+            <p className="text-[11px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mb-3">Follow us</p>
             <div className="flex gap-3">
               {[
                 { icon: FaInstagram, href: "https://www.instagram.com/codezillaclub/", label: "Instagram" },
@@ -124,7 +124,7 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-9 h-9 flex items-center justify-center rounded-xl border border-zinc-200 text-zinc-500 hover:text-orange-500 hover:border-orange-200 transition-all duration-150"
+                  className="w-9 h-9 flex items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 hover:text-orange-500 hover:border-orange-200 dark:hover:border-orange-500/40 transition-all duration-150"
                 >
                   <Icon size={14} />
                 </a>
@@ -146,12 +146,12 @@ export default function ContactPage() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="rounded-2xl border border-zinc-200/70 bg-white p-6 space-y-4 shadow-sm"
+              className="rounded-2xl border border-zinc-200/70 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 space-y-4 shadow-sm"
             >
-              <h3 className="font-semibold text-zinc-800 text-sm mb-1">Send a message</h3>
+              <h3 className="font-semibold text-zinc-800 dark:text-zinc-100 text-sm mb-1">Send a message</h3>
 
               <div className="space-y-1">
-                <label className="text-[11px] text-zinc-500 uppercase tracking-wider">Name</label>
+                <label className="text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Name</label>
                 <input
                   name="name"
                   required
@@ -163,7 +163,7 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-1">
-                <label className="text-[11px] text-zinc-500 uppercase tracking-wider">Email</label>
+                <label className="text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Email</label>
                 <input
                   type="email"
                   name="email"
@@ -176,7 +176,7 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-1">
-                <label className="text-[11px] text-zinc-500 uppercase tracking-wider">Message</label>
+                <label className="text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Message</label>
                 <textarea
                   name="message"
                   required

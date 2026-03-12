@@ -52,9 +52,9 @@ const EVENTS = [
 ];
 
 const TAG_COLORS: Record<string, string> = {
-  Workshop:  "bg-blue-50 text-blue-600 border-blue-200",
-  Hackathon: "bg-purple-50 text-purple-600 border-purple-200",
-  Bootcamp:  "bg-teal-50 text-teal-600 border-teal-200",
+  Workshop:  "bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-500/30",
+  Hackathon: "bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-200 dark:border-purple-500/30",
+  Bootcamp:  "bg-teal-50 dark:bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-200 dark:border-teal-500/30",
 };
 
 export default function EventsPage() {
@@ -62,12 +62,12 @@ export default function EventsPage() {
   const past     = EVENTS.filter((e) => e.status === "past");
 
   return (
-    <div className="bg-[#fafaf9] min-h-screen">
+    <div className="bg-zinc-50 dark:bg-zinc-950 min-h-screen">
 
       {/* Hero */}
       <section className="relative overflow-hidden py-24 md:py-32">
         <div
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0 dark:opacity-20"
           style={{
             backgroundImage:
               "linear-gradient(rgba(0,0,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.03) 1px,transparent 1px)",
@@ -77,15 +77,15 @@ export default function EventsPage() {
         <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-56 bg-orange-400/10 blur-3xl rounded-full" />
         <div className="relative max-w-3xl mx-auto px-5 md:px-8 text-center">
           <motion.div {...fade(0)}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-300/60 bg-orange-50 px-3 py-1 text-[11px] font-semibold text-orange-600 uppercase tracking-widest mb-6">
+            <span className="inline-flex items-center gap-2 rounded-full border border-orange-300/60 dark:border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-3 py-1 text-[11px] font-semibold text-orange-600 dark:text-orange-400 uppercase tracking-widest mb-6">
               <span className="h-1.5 w-1.5 rounded-full bg-orange-500 animate-pulse" />
               What&apos;s on
             </span>
           </motion.div>
-          <motion.h1 {...fade(0.07)} className="font-passion text-5xl md:text-7xl text-zinc-900 leading-[1.05] mb-5">
+          <motion.h1 {...fade(0.07)} className="font-passion text-5xl md:text-7xl text-zinc-900 dark:text-zinc-100 leading-[1.05] mb-5">
             Events &amp; <span className="text-orange-500">workshops.</span>
           </motion.h1>
-          <motion.p {...fade(0.14)} className="text-base md:text-lg text-zinc-500 max-w-xl mx-auto">
+          <motion.p {...fade(0.14)} className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto">
             From overnight hackathons to expert-led workshops — if it involves learning and
             building, you&apos;ll find it here.
           </motion.p>
@@ -95,8 +95,8 @@ export default function EventsPage() {
       {/* Upcoming events */}
       <section className="max-w-5xl mx-auto px-5 md:px-8 pb-10">
         <motion.div {...fade(0)} className="flex items-center gap-3 mb-8">
-          <h2 className="font-passion text-2xl text-zinc-900">Upcoming</h2>
-          <span className="rounded-full bg-orange-100 text-orange-600 text-[11px] font-semibold px-2.5 py-0.5 border border-orange-200">
+          <h2 className="font-passion text-2xl text-zinc-900 dark:text-zinc-100">Upcoming</h2>
+          <span className="rounded-full bg-orange-100 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 text-[11px] font-semibold px-2.5 py-0.5 border border-orange-200 dark:border-orange-500/30">
             {upcoming.length} events
           </span>
         </motion.div>
@@ -106,9 +106,9 @@ export default function EventsPage() {
             <motion.article
               key={ev.title}
               {...fade(i * 0.08)}
-              className="group rounded-2xl overflow-hidden border border-zinc-200/70 bg-white hover:border-orange-200 hover:shadow-md transition-all duration-300"
+              className="group rounded-2xl overflow-hidden border border-zinc-200/70 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-orange-200 dark:hover:border-orange-500/40 hover:shadow-md transition-all duration-300"
             >
-              <div className="relative h-44 bg-zinc-100 overflow-hidden">
+              <div className="relative h-44 bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
                 <Image src={ev.img} alt={ev.title} fill sizes="50vw" className="object-contain p-4 group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute top-3 left-3">
                   <span className={`rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${TAG_COLORS[ev.tag]}`}>
@@ -116,15 +116,15 @@ export default function EventsPage() {
                   </span>
                 </div>
                 <div className="absolute top-3 right-3">
-                  <span className="rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] font-semibold px-2.5 py-0.5 uppercase tracking-wide">
+                  <span className="rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-[10px] font-semibold px-2.5 py-0.5 uppercase tracking-wide">
                     Upcoming
                   </span>
                 </div>
               </div>
               <div className="p-5 space-y-3">
-                <h3 className="font-semibold text-zinc-900 text-sm leading-snug">{ev.title}</h3>
-                <p className="text-xs text-zinc-400 leading-relaxed">{ev.desc}</p>
-                <div className="flex flex-wrap gap-3 text-[11px] text-zinc-400 pt-1">
+                <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 text-sm leading-snug">{ev.title}</h3>
+                <p className="text-xs text-zinc-400 dark:text-zinc-500 leading-relaxed">{ev.desc}</p>
+                <div className="flex flex-wrap gap-3 text-[11px] text-zinc-400 dark:text-zinc-500 pt-1">
                   <span className="flex items-center gap-1"><Calendar size={11} />{ev.date}</span>
                   <span className="flex items-center gap-1"><MapPin size={11} />{ev.location}</span>
                   <span className="flex items-center gap-1"><Users size={11} />{ev.attendees} attendees</span>
@@ -141,16 +141,16 @@ export default function EventsPage() {
       {/* Past events */}
       <section className="max-w-5xl mx-auto px-5 md:px-8 pb-24 md:pb-32 mt-12">
         <motion.div {...fade(0)} className="flex items-center gap-3 mb-8">
-          <h2 className="font-passion text-2xl text-zinc-900">Past events</h2>
+          <h2 className="font-passion text-2xl text-zinc-900 dark:text-zinc-100">Past events</h2>
         </motion.div>
         <div className="grid md:grid-cols-3 gap-5">
           {past.map((ev, i) => (
             <motion.article
               key={ev.title}
               {...fade(i * 0.08)}
-              className="rounded-2xl overflow-hidden border border-zinc-200/50 bg-white/70 opacity-80 hover:opacity-100 transition-opacity duration-200"
+              className="rounded-2xl overflow-hidden border border-zinc-200/50 dark:border-zinc-800/60 bg-white/70 dark:bg-zinc-900/70 opacity-80 hover:opacity-100 transition-opacity duration-200"
             >
-              <div className="relative h-36 bg-zinc-100 overflow-hidden">
+              <div className="relative h-36 bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
                 <Image src={ev.img} alt={ev.title} fill sizes="33vw" className="object-contain p-4" />
                 <div className="absolute top-3 left-3">
                   <span className={`rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${TAG_COLORS[ev.tag]}`}>
@@ -159,8 +159,8 @@ export default function EventsPage() {
                 </div>
               </div>
               <div className="p-4 space-y-2">
-                <h3 className="font-semibold text-zinc-700 text-sm">{ev.title}</h3>
-                <div className="flex flex-wrap gap-2 text-[11px] text-zinc-400">
+                <h3 className="font-semibold text-zinc-700 dark:text-zinc-300 text-sm">{ev.title}</h3>
+                <div className="flex flex-wrap gap-2 text-[11px] text-zinc-400 dark:text-zinc-500">
                   <span className="flex items-center gap-1"><Calendar size={11} />{ev.date}</span>
                   <span className="flex items-center gap-1"><Users size={11} />{ev.attendees}</span>
                 </div>

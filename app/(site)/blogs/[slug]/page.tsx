@@ -34,8 +34,8 @@ export default async function BlogPage({ params }: PageProps) {
 
   if (!blog) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
-        <div className="text-xl font-semibold text-gray-600 p-6 bg-white rounded-lg shadow-md">
+      <div className="flex items-center justify-center min-h-screen bg-zinc-50 dark:bg-zinc-950">
+        <div className="text-xl font-semibold text-zinc-600 dark:text-zinc-300 p-6 bg-white dark:bg-zinc-900 rounded-lg shadow-md border border-zinc-200 dark:border-zinc-800">
           🔍 Blog not found or an error occurred.
         </div>
       </div>
@@ -43,8 +43,8 @@ export default async function BlogPage({ params }: PageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white shadow-xl rounded-lg overflow-hidden">
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 py-12">
+      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-zinc-900 shadow-xl dark:shadow-[0_20px_60px_rgba(0,0,0,0.6)] rounded-lg overflow-hidden border border-zinc-100 dark:border-zinc-800">
         {blog.imgsrc && (
           <div className="mb-8 max-h-[450px] overflow-hidden">
             <Image
@@ -58,12 +58,12 @@ export default async function BlogPage({ params }: PageProps) {
         )}
 
         <div className="p-6 sm:p-10">
-          <h1 className="text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+          <h1 className="text-5xl font-extrabold text-zinc-900 dark:text-zinc-100 leading-tight mb-4">
             {blog.title}
           </h1>
-          <p className="text-md text-gray-500 mb-10 border-b pb-4 border-gray-100">
+          <p className="text-md text-zinc-500 dark:text-zinc-400 mb-10 border-b pb-4 border-zinc-100 dark:border-zinc-800">
             Published:{" "}
-            <time dateTime={blog.published} className="font-medium text-gray-600">
+            <time dateTime={blog.published} className="font-medium text-zinc-600 dark:text-zinc-300">
               {new Date(blog.published).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
@@ -71,7 +71,7 @@ export default async function BlogPage({ params }: PageProps) {
               })}
             </time>
           </p>
-          <div className="prose prose-lg max-w-none text-gray-800">
+          <div className="prose prose-lg dark:prose-invert max-w-none text-zinc-800 dark:text-zinc-200">
             <p className="leading-relaxed whitespace-pre-line font-serif text-xl">
               {blog.content}
             </p>

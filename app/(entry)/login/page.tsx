@@ -45,10 +45,10 @@ export default function LoginPage() {
   };
 
   const inputCls =
-    "w-full rounded-xl border border-zinc-200 bg-white pl-10 pr-4 py-2.5 text-sm text-zinc-800 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-orange-400/40 focus:border-orange-400 transition shadow-sm";
+    "w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 pl-10 pr-4 py-2.5 text-sm text-zinc-800 dark:text-zinc-200 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-orange-400/40 focus:border-orange-400 dark:focus:border-orange-500 transition shadow-sm";
 
   return (
-    <div className="min-h-screen bg-zinc-50 flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden">
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden">
       {/* bg glow */}
       <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-60 bg-orange-400/10 blur-3xl rounded-full" />
 
@@ -64,14 +64,14 @@ export default function LoginPage() {
             <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-orange-400/40">
               <Image src="/branding/Copy of codezilla with fox black.png" alt="Codezilla" fill sizes="32px" className="object-contain" />
             </div>
-            <span className="font-passion text-lg text-zinc-800 tracking-wide">CODEZILLA</span>
+            <span className="font-passion text-lg text-zinc-800 dark:text-zinc-200 tracking-wide">CODEZILLA</span>
           </div>
-          <h1 className="font-passion text-3xl text-zinc-900 mb-1">Welcome back</h1>
-          <p className="text-xs text-zinc-400">Sign in to your Codezilla member account</p>
+          <h1 className="font-passion text-3xl text-zinc-900 dark:text-zinc-100 mb-1">Welcome back</h1>
+          <p className="text-xs text-zinc-400 dark:text-zinc-500">Sign in to your Codezilla member account</p>
         </div>
 
         {/* Card */}
-        <div className="rounded-2xl border border-zinc-200 bg-white p-6 space-y-4 shadow-sm">
+        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 space-y-4 shadow-sm">
           {error && (
             <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs text-red-600">
               {error}
@@ -99,21 +99,21 @@ export default function LoginPage() {
           </form>
 
           <div className="relative flex items-center gap-3">
-            <div className="flex-1 h-px bg-zinc-100" />
-            <span className="text-[11px] text-zinc-400 uppercase tracking-wider">or</span>
-            <div className="flex-1 h-px bg-zinc-100" />
+            <div className="flex-1 h-px bg-zinc-100 dark:bg-zinc-800" />
+            <span className="text-[11px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">or</span>
+            <div className="flex-1 h-px bg-zinc-100 dark:bg-zinc-800" />
           </div>
 
           <button
             onClick={handleGoogleLogin}
             disabled={loading}
-            className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 px-5 py-2.5 text-sm text-zinc-700 font-medium transition-all duration-200"
+            className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 px-5 py-2.5 text-sm text-zinc-700 dark:text-zinc-200 font-medium transition-all duration-200"
           >
             <FaGoogle size={13} />
             Continue with Google
           </button>
 
-          <p className="text-center text-[11px] text-zinc-400">
+          <p className="text-center text-[11px] text-zinc-400 dark:text-zinc-500">
             No account?{" "}
             <Link href="/recruit" className="text-orange-500 hover:text-orange-600 transition-colors">
               Apply for membership

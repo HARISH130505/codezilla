@@ -64,12 +64,12 @@ const MEMBERS = [
 
 export default function MembersPage() {
   return (
-    <div className="bg-[#fafaf9] min-h-screen">
+    <div className="bg-zinc-50 dark:bg-zinc-950 min-h-screen">
 
       {/* Hero */}
       <section className="relative overflow-hidden py-24 md:py-32">
         <div
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0 dark:opacity-20"
           style={{
             backgroundImage:
               "linear-gradient(rgba(0,0,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.03) 1px,transparent 1px)",
@@ -79,15 +79,15 @@ export default function MembersPage() {
         <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-56 bg-orange-400/10 blur-3xl rounded-full" />
         <div className="relative max-w-3xl mx-auto px-5 md:px-8 text-center">
           <motion.div {...fade(0)}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-300/60 bg-orange-50 px-3 py-1 text-[11px] font-semibold text-orange-600 uppercase tracking-widest mb-6">
+            <span className="inline-flex items-center gap-2 rounded-full border border-orange-300/60 dark:border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-3 py-1 text-[11px] font-semibold text-orange-600 dark:text-orange-400 uppercase tracking-widest mb-6">
               <span className="h-1.5 w-1.5 rounded-full bg-orange-500 animate-pulse" />
               The team
             </span>
           </motion.div>
-          <motion.h1 {...fade(0.07)} className="font-passion text-5xl md:text-7xl text-zinc-900 leading-[1.05] mb-5">
+          <motion.h1 {...fade(0.07)} className="font-passion text-5xl md:text-7xl text-zinc-900 dark:text-zinc-100 leading-[1.05] mb-5">
             Meet the <span className="text-orange-500">leads.</span>
           </motion.h1>
-          <motion.p {...fade(0.14)} className="text-base md:text-lg text-zinc-500 max-w-xl mx-auto">
+          <motion.p {...fade(0.14)} className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto">
             Seven driven students who keep Codezilla running — from the big ideas all the way down
             to making sure the room is booked.
           </motion.p>
@@ -101,10 +101,10 @@ export default function MembersPage() {
             <motion.div
               key={name}
               {...fade(i * 0.06)}
-              className="group relative rounded-2xl overflow-hidden border border-zinc-200/70 bg-white shadow-sm hover:shadow-md hover:border-orange-200 transition-all duration-300"
+              className="group relative rounded-2xl overflow-hidden border border-zinc-200/70 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-md hover:border-orange-200 dark:hover:border-orange-500/40 transition-all duration-300"
             >
               {/* Avatar */}
-              <div className="relative h-56 w-full bg-zinc-100 overflow-hidden">
+              <div className="relative h-56 w-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
                 <Image
                   src={img}
                   alt={name}
@@ -117,11 +117,11 @@ export default function MembersPage() {
 
               {/* Info */}
               <div className="p-4 space-y-1">
-                <span className="inline-block rounded-full bg-orange-50 border border-orange-200/80 px-2.5 py-0.5 text-[10px] font-semibold text-orange-600 uppercase tracking-wider">
+                <span className="inline-block rounded-full bg-orange-50 dark:bg-orange-500/10 border border-orange-200/80 dark:border-orange-500/30 px-2.5 py-0.5 text-[10px] font-semibold text-orange-600 dark:text-orange-400 uppercase tracking-wider">
                   {role}
                 </span>
-                <h3 className="text-sm font-semibold text-zinc-900 mt-2">{name}</h3>
-                <p className="text-xs text-zinc-400 leading-relaxed">{bio}</p>
+                <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mt-2">{name}</h3>
+                <p className="text-xs text-zinc-400 dark:text-zinc-500 leading-relaxed">{bio}</p>
               </div>
             </motion.div>
           ))}

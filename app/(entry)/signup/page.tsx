@@ -47,21 +47,21 @@ export default function SignupPage() {
   };
 
   const inputCls =
-    "w-full rounded-xl border border-zinc-200 bg-white pl-10 pr-4 py-2.5 text-sm text-zinc-800 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-orange-400/40 focus:border-orange-400 transition shadow-sm";
+    "w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 pl-10 pr-4 py-2.5 text-sm text-zinc-800 dark:text-zinc-200 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-orange-400/40 focus:border-orange-400 dark:focus:border-orange-500 transition shadow-sm";
 
   if (success) {
     return (
-      <div className="min-h-screen bg-zinc-50 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={tx}
-          className="max-w-sm w-full rounded-2xl border border-emerald-200 bg-emerald-50 p-8 text-center space-y-4 shadow-sm"
+          className="max-w-sm w-full rounded-2xl border border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 p-8 text-center space-y-4 shadow-sm"
         >
           <p className="text-4xl">🎉</p>
-          <h2 className="font-passion text-2xl text-zinc-900">Check your email</h2>
-          <p className="text-sm text-zinc-500">
-            We&apos;ve sent a confirmation link to <strong className="text-zinc-800">{email}</strong>.
+          <h2 className="font-passion text-2xl text-zinc-900 dark:text-zinc-100">Check your email</h2>
+          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+            We&apos;ve sent a confirmation link to <strong className="text-zinc-800 dark:text-zinc-200">{email}</strong>.
             Click it to activate your account then{" "}
             <Link href="/login" className="text-orange-500 hover:underline">sign in</Link>.
           </p>
@@ -71,7 +71,7 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50 flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden">
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden">
       <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-60 bg-orange-400/10 blur-3xl rounded-full" />
 
       <motion.div
@@ -85,13 +85,13 @@ export default function SignupPage() {
             <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-orange-400/40">
               <Image src="/branding/Copy of codezilla with fox black.png" alt="Codezilla" fill sizes="32px" className="object-contain" />
             </div>
-            <span className="font-passion text-lg text-zinc-800 tracking-wide">CODEZILLA</span>
+            <span className="font-passion text-lg text-zinc-800 dark:text-zinc-200 tracking-wide">CODEZILLA</span>
           </div>
-          <h1 className="font-passion text-3xl text-zinc-900 mb-1">Join the club</h1>
-          <p className="text-xs text-zinc-400">Create your free Codezilla profile</p>
+          <h1 className="font-passion text-3xl text-zinc-900 dark:text-zinc-100 mb-1">Join the club</h1>
+          <p className="text-xs text-zinc-400 dark:text-zinc-500">Create your free Codezilla profile</p>
         </div>
 
-        <div className="rounded-2xl border border-zinc-200 bg-white p-6 space-y-4 shadow-sm">
+        <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 space-y-4 shadow-sm">
           {error && (
             <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs text-red-600">
               {error}
@@ -123,21 +123,21 @@ export default function SignupPage() {
           </form>
 
           <div className="relative flex items-center gap-3">
-            <div className="flex-1 h-px bg-zinc-100" />
-            <span className="text-[11px] text-zinc-400 uppercase tracking-wider">or</span>
-            <div className="flex-1 h-px bg-zinc-100" />
+            <div className="flex-1 h-px bg-zinc-100 dark:bg-zinc-800" />
+            <span className="text-[11px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">or</span>
+            <div className="flex-1 h-px bg-zinc-100 dark:bg-zinc-800" />
           </div>
 
           <button
             onClick={handleGoogleSignup}
             disabled={loading}
-            className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-200 bg-zinc-50 hover:bg-zinc-100 px-5 py-2.5 text-sm text-zinc-700 font-medium transition-all duration-200"
+            className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 px-5 py-2.5 text-sm text-zinc-700 dark:text-zinc-200 font-medium transition-all duration-200"
           >
             <FaGoogle size={13} />
             Continue with Google
           </button>
 
-          <p className="text-center text-[11px] text-zinc-400">
+          <p className="text-center text-[11px] text-zinc-400 dark:text-zinc-500">
             Already a member?{" "}
             <Link href="/login" className="text-orange-500 hover:text-orange-600 transition-colors">
               Sign in
