@@ -49,12 +49,12 @@ const fade = (delay = 0) => ({
 
 export default function AboutPage() {
   return (
-    <div className="bg-[#fafaf9] min-h-screen">
+    <div className="bg-zinc-50 dark:bg-zinc-950 min-h-screen">
 
       {/* Hero */}
       <section className="relative overflow-hidden py-24 md:py-32">
         <div
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0 dark:opacity-20"
           style={{
             backgroundImage:
               "linear-gradient(rgba(0,0,0,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.035) 1px,transparent 1px)",
@@ -65,18 +65,18 @@ export default function AboutPage() {
 
         <div className="relative max-w-4xl mx-auto px-5 md:px-8 text-center">
           <motion.div {...fade(0)}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-orange-300/60 bg-orange-50 px-3 py-1 text-[11px] font-semibold text-orange-600 uppercase tracking-widest mb-6">
+            <span className="inline-flex items-center gap-2 rounded-full border border-orange-300/60 dark:border-orange-500/30 bg-orange-50 dark:bg-orange-500/10 px-3 py-1 text-[11px] font-semibold text-orange-600 dark:text-orange-400 uppercase tracking-widest mb-6">
               <span className="h-1.5 w-1.5 rounded-full bg-orange-500 animate-pulse" />
               Mozilla Campus Club · SRMIST Ramapuram
             </span>
           </motion.div>
 
-          <motion.h1 {...fade(0.08)} className="font-passion text-5xl md:text-7xl text-zinc-900 leading-[1.05] mb-6">
+          <motion.h1 {...fade(0.08)} className="font-passion text-5xl md:text-7xl text-zinc-900 dark:text-zinc-100 leading-[1.05] mb-6">
             We build.{" "}
             <span className="text-orange-500">Together.</span>
           </motion.h1>
 
-          <motion.p {...fade(0.16)} className="text-base md:text-lg text-zinc-500 max-w-2xl mx-auto leading-relaxed">
+          <motion.p {...fade(0.16)} className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed">
             Codezilla is SRMIST Ramapuram&apos;s official Mozilla Campus Club — a hands-on community
             of students who ship real projects, run open-source workshops, and grow into engineers
             the industry actually wants.
@@ -85,12 +85,12 @@ export default function AboutPage() {
       </section>
 
       {/* Stats bar */}
-      <section className="border-y border-zinc-200/70 bg-white">
+      <section className="border-y border-zinc-200/70 dark:border-zinc-800 bg-white dark:bg-zinc-900">
         <div className="max-w-4xl mx-auto px-5 md:px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {STATS.map(({ value, label }, i) => (
             <motion.div key={label} {...fade(i * 0.06)}>
               <p className="font-passion text-4xl text-orange-500 mb-1">{value}</p>
-              <p className="text-xs text-zinc-500 uppercase tracking-widest">{label}</p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">{label}</p>
             </motion.div>
           ))}
         </div>
@@ -100,38 +100,38 @@ export default function AboutPage() {
       <section className="max-w-4xl mx-auto px-5 md:px-8 py-20 md:py-28 grid md:grid-cols-2 gap-12 items-center">
         <motion.div {...fade(0)} className="space-y-5">
           <span className="text-[11px] font-semibold uppercase tracking-widest text-orange-500">Our mission</span>
-          <h2 className="font-passion text-4xl md:text-5xl text-zinc-900 leading-tight">
+          <h2 className="font-passion text-4xl md:text-5xl text-zinc-900 dark:text-zinc-100 leading-tight">
             Open tech,<br />open doors.
           </h2>
-          <p className="text-sm text-zinc-500 leading-relaxed">
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
             We believe every student should have the opportunity to build real things — not just
             read about them. That&apos;s why Codezilla runs events, publishes resources, and keeps
             its community permanently free to join.
           </p>
-          <p className="text-sm text-zinc-500 leading-relaxed">
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
             As a Mozilla Campus Club we&apos;re anchored to the principle that the internet should
             remain open, safe, and accessible to everyone. Our projects and workshops reflect that
             ethos in every line of code.
           </p>
         </motion.div>
 
-        <motion.div {...fade(0.1)} className="rounded-2xl overflow-hidden border border-zinc-200/80 bg-zinc-50 p-6 grid grid-cols-2 gap-4">
+        <motion.div {...fade(0.1)} className="rounded-2xl overflow-hidden border border-zinc-200/80 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-6 grid grid-cols-2 gap-4">
           {[
             { value: "40+",    label: "Active members",      sub: "core club team" },
             { value: "3K+",    label: "Community audience",  sub: "event followers" },
             { value: "20+",    label: "Events hosted",       sub: "workshops & talks" },
             { value: "100%",   label: "Open source",         sub: "everything we ship" },
           ].map(({ value, label, sub }) => (
-            <div key={label} className="rounded-xl bg-white border border-zinc-100 p-4 flex flex-col gap-1">
+            <div key={label} className="rounded-xl bg-white dark:bg-zinc-800 border border-zinc-100 dark:border-zinc-700 p-4 flex flex-col gap-1">
               <span className="font-passion text-3xl text-orange-500 leading-none">{value}</span>
-              <span className="text-xs font-semibold text-zinc-700">{label}</span>
-              <span className="text-[11px] text-zinc-400">{sub}</span>
+              <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-200">{label}</span>
+              <span className="text-[11px] text-zinc-400 dark:text-zinc-500">{sub}</span>
             </div>
           ))}
         </motion.div>
       </section>
 
-      {/* Why join — dark section */}
+      {/* Why join — intentionally always dark */}
       <section className="bg-zinc-950 py-20 md:py-28">
         <div className="max-w-5xl mx-auto px-5 md:px-8">
           <motion.div {...fade(0)} className="text-center mb-14">
@@ -162,10 +162,10 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="py-20 md:py-28 text-center">
         <div className="max-w-xl mx-auto px-5 md:px-8 space-y-6">
-          <motion.h2 {...fade(0)} className="font-passion text-4xl md:text-5xl text-zinc-900">
+          <motion.h2 {...fade(0)} className="font-passion text-4xl md:text-5xl text-zinc-900 dark:text-zinc-100">
             Ready to build?
           </motion.h2>
-          <motion.p {...fade(0.08)} className="text-sm text-zinc-500">
+          <motion.p {...fade(0.08)} className="text-sm text-zinc-500 dark:text-zinc-400">
             Membership is free and open to all SRMIST students. Sign up, build your profile, and
             show up to the next event.
           </motion.p>
@@ -178,7 +178,7 @@ export default function AboutPage() {
             </a>
             <a
               href="/events"
-              className="inline-flex items-center justify-center rounded-xl border border-zinc-200 bg-white hover:border-orange-300 px-7 py-3 text-sm font-medium text-zinc-700 transition-all duration-200"
+              className="inline-flex items-center justify-center rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:border-orange-300 dark:hover:border-orange-500/50 px-7 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-all duration-200"
             >
               See upcoming events
             </a>

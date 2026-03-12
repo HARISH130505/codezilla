@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode for next-themes compatibility */
+@variant dark (&:is(.dark *));
+
 /* ─────────────────────────────────────────────────────────────────────────────
    CODEZILLA DESIGN SYSTEM
    One coherent visual language across every surface.
@@ -65,21 +68,20 @@
   --duration-slow:   400ms;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg-page:     #09090b;
-    --color-bg-elevated: #111113;
-    --color-bg-subtle:   #18181b;
-    --color-border-subtle: rgba(255,255,255,0.06);
-    --color-border-strong: rgba(255,255,255,0.12);
-    --color-fg-default: #fafafa;
-    --color-fg-muted:   #a1a1aa;
-    --color-fg-soft:    #71717a;
-    --color-brand-soft:     rgba(249,115,22,0.12);
-    --color-brand-soft-mid: rgba(249,115,22,0.22);
-    --shadow-soft:   0 4px 24px rgba(0,0,0,0.4);
-    --shadow-strong: 0 20px 60px rgba(0,0,0,0.7);
-  }
+/* Class-based dark mode — used by next-themes (attribute="class") */
+.dark {
+  --color-bg-page:     #09090b;
+  --color-bg-elevated: #111113;
+  --color-bg-subtle:   #18181b;
+  --color-border-subtle: rgba(255,255,255,0.06);
+  --color-border-strong: rgba(255,255,255,0.12);
+  --color-fg-default: #fafafa;
+  --color-fg-muted:   #a1a1aa;
+  --color-fg-soft:    #71717a;
+  --color-brand-soft:     rgba(249,115,22,0.12);
+  --color-brand-soft-mid: rgba(249,115,22,0.22);
+  --shadow-soft:   0 4px 24px rgba(0,0,0,0.4);
+  --shadow-strong: 0 20px 60px rgba(0,0,0,0.7);
 }
 
 /* ── Base reset ─────────────────────────────────────────────────────────── */
