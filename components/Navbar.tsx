@@ -40,18 +40,18 @@ export default function Navbar() {
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-black/80 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_1px_0_rgba(255,255,255,0.04)]"
-            : "bg-transparent"
+            ? "bg-white shadow-sm border-b border-zinc-200"
+            : "bg-white border-b border-zinc-200"
         }`}
       >
         <div className="max-w-7xl mx-auto px-5 md:px-8 h-14 flex items-center justify-between gap-6">
 
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center gap-2.5 group">
-            <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-orange-400/30 group-hover:border-orange-400/70 transition-colors duration-200">
+            <div className="relative w-8 h-8 rounded-lg overflow-hidden border border-zinc-200 group-hover:border-orange-400 transition-colors duration-200">
               <Image src="/branding/Copy of codezilla with fox black.png" alt="Codezilla" fill sizes="32px" className="object-contain" priority />
             </div>
-            <span className="font-passion text-lg text-white tracking-wide hidden sm:block group-hover:text-orange-300 transition-colors duration-200">
+            <span className="font-passion text-lg text-zinc-900 tracking-wide hidden sm:block group-hover:text-orange-500 transition-colors duration-200">
               CODEZILLA
             </span>
           </Link>
@@ -65,13 +65,13 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   className={`relative px-3.5 py-1.5 rounded-md text-sm font-medium transition-colors duration-150 ${
-                    active ? "text-orange-300" : "text-white/60 hover:text-white/90"
+                    active ? "text-orange-500" : "text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100"
                   }`}
                 >
                   {active && (
                     <motion.span
                       layoutId="nav-pill"
-                      className="absolute inset-0 rounded-md bg-white/[0.07] border border-white/[0.09]"
+                      className="absolute inset-0 rounded-md bg-orange-50 border border-orange-200"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
                     />
                   )}
@@ -90,8 +90,8 @@ export default function Navbar() {
                   href="/portal"
                   className={`hidden md:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 ${
                     pathname.startsWith("/portal")
-                      ? "bg-orange-500 text-white shadow-[0_0_20px_rgba(249,115,22,0.45)]"
-                      : "bg-orange-500/10 text-orange-300 border border-orange-500/30 hover:bg-orange-500/20"
+                      ? "bg-orange-500 text-white shadow-[0_4px_12px_rgba(249,115,22,0.35)]"
+                      : "bg-orange-50 text-orange-600 border border-orange-200 hover:bg-orange-100"
                   }`}
                 >
                   {user?.user_metadata?.avatar_url ? (
@@ -111,7 +111,7 @@ export default function Navbar() {
                 /* ── Guest ── */
                 <Link
                   href="/login"
-                  className="hidden md:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-white/[0.1] bg-white/[0.05] text-white/70 text-xs font-medium hover:text-white hover:bg-white/[0.09] transition-all duration-150"
+                  className="hidden md:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-zinc-200 bg-white text-zinc-600 text-xs font-medium hover:text-zinc-900 hover:border-zinc-300 hover:bg-zinc-50 transition-all duration-150 shadow-sm"
                 >
                   <LogIn size={12} />
                   Member login
@@ -121,7 +121,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setOpen((v) => !v)}
-              className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-white/10 text-white/70 hover:text-white hover:bg-white/[0.06] transition-colors"
+              className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-zinc-200 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors"
               aria-label="Toggle menu"
             >
               {open ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -149,13 +149,13 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", bounce: 0, duration: 0.35 }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-zinc-950 border-l border-white/[0.06] flex flex-col md:hidden"
+              className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-white border-l border-zinc-200 flex flex-col md:hidden"
             >
-              <div className="flex items-center justify-between px-5 h-14 border-b border-white/[0.06]">
-                <span className="font-passion text-base text-white">CODEZILLA</span>
+              <div className="flex items-center justify-between px-5 h-14 border-b border-zinc-200">
+                <span className="font-passion text-base text-zinc-900">CODEZILLA</span>
                 <button
                   onClick={() => setOpen(false)}
-                  className="w-8 h-8 flex items-center justify-center rounded-md text-white/50 hover:text-white transition-colors"
+                  className="w-8 h-8 flex items-center justify-center rounded-md text-zinc-400 hover:text-zinc-900 hover:bg-zinc-100 transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -175,11 +175,11 @@ export default function Navbar() {
                         href={item.href}
                         className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                           active
-                            ? "bg-orange-500/10 text-orange-300 border border-orange-500/20"
-                            : "text-white/60 hover:text-white hover:bg-white/[0.05]"
+                            ? "bg-orange-50 text-orange-600 border border-orange-200"
+                            : "text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100"
                         }`}
                       >
-                        {active && <span className="w-1 h-4 rounded-full bg-orange-400" />}
+                        {active && <span className="w-1 h-4 rounded-full bg-orange-500" />}
                         {item.label}
                       </Link>
                     </motion.div>
@@ -188,11 +188,11 @@ export default function Navbar() {
               </div>
 
               {/* Mobile auth CTA */}
-              <div className="p-4 border-t border-white/[0.06] space-y-2">
+              <div className="p-4 border-t border-zinc-200 space-y-2">
                 {!loading && isMember ? (
                   <Link
                     href="/portal"
-                    className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-400 text-black text-sm font-bold"
+                    className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold"
                   >
                     <LayoutDashboard size={14} /> My Portal
                   </Link>
@@ -200,7 +200,7 @@ export default function Navbar() {
                   <>
                     <Link
                       href="/login"
-                      className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-white/[0.1] bg-white/[0.05] text-white/80 text-sm font-medium"
+                      className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-700 text-sm font-medium hover:bg-zinc-100"
                     >
                       <LogIn size={14} /> Member login
                     </Link>
