@@ -11,7 +11,7 @@ import { motion, type Transition } from "framer-motion";
 
 const tx: Transition = { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] };
 
-export default function LoginPage() {
+export default function AdminLoginPage() {
   const router = useRouter();
   const [email,    setEmail]    = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +22,7 @@ export default function LoginPage() {
   async function checkWhitelist(userEmail: string): Promise<boolean> {
     if (!supabase) return false;
     const { data, error } = await supabase
-      .from("allowed_emails")
+      .from("allowed_admins")
       .select("id")
       .eq("email", userEmail.toLowerCase().trim())
       .maybeSingle();
@@ -44,13 +44,16 @@ export default function LoginPage() {
     const allowed = await checkWhitelist(email);
     if (!allowed) {
       await supabase.auth.signOut();
-      setError("Your email is not on the Codezilla member list. Contact an admin to get added.");
+      setError("Your email is not on the Codezilla Admin list. Access Denied.");
       setLoading(false);
       return;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await (supabase.from("profiles") as any).update({ role: "admin" }).eq("id", data.session.user.id);
+    
     setLoading(false);
-    router.push("/portal");
+    router.push("/admin");
   };
 
   const handleGoogleLogin = async () => {
@@ -59,9 +62,9 @@ export default function LoginPage() {
     setLoading(true);
     const { error: oauthError } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: `${window.location.origin}/portal` },
+      options: { redirectTo: `${window.location.origin}/admin` },
     });
-    // Note: for Google OAuth, whitelist check happens on the portal page after redirect
+    // Note: for Google OAuth, whitelist check happens on the admin page after redirect
     if (oauthError) { setError(oauthError.message); setLoading(false); }
   };
 
@@ -88,7 +91,7 @@ export default function LoginPage() {
             <span className="font-passion text-lg text-zinc-800 dark:text-zinc-200 tracking-wide">CODEZILLA</span>
           </div>
           <h1 className="font-passion text-3xl text-zinc-900 dark:text-zinc-100 mb-1">Welcome back</h1>
-          <p className="text-xs text-zinc-400 dark:text-zinc-500">Sign in to your Codezilla member account</p>
+          <p className="text-xs text-zinc-400 dark:text-zinc-500">Sign in to your Codezilla admin account</p>
         </div>
 
         {/* Card */}

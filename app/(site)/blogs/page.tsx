@@ -27,8 +27,8 @@ type Blog = {
 };
 
 export default function BlogsPage() {
-  const [blogs, setBlogs]     = useState<Blog[]>([]);
-  const [query, setQuery]     = useState("");
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export default function BlogsPage() {
             </span>
           </motion.div>
           <motion.h1 {...fade(0.07)} className="font-passion text-5xl md:text-7xl text-zinc-900 dark:text-zinc-100 leading-[1.05] mb-5">
-            The <span className="text-orange-500">blog.</span>
+            Zillabytes <span className="text-orange-500">(Blogs)</span>
           </motion.h1>
           <motion.p {...fade(0.14)} className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto mb-8">
             Tutorials, project write-ups, and perspectives from the Codezilla community.
@@ -121,10 +121,10 @@ export default function BlogsPage() {
                     <Calendar size={11} />
                     {blog.published
                       ? new Date(blog.published).toLocaleDateString("en-IN", {
-                          day: "numeric",
-                          month: "short",
-                          year: "numeric",
-                        })
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })
                       : "—"}
                   </div>
                   <h2 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 leading-snug group-hover:text-orange-500 transition-colors">

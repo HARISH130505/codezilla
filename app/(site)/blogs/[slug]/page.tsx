@@ -50,13 +50,14 @@ export default async function BlogPage({
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white dark:bg-zinc-900 shadow-xl rounded-lg overflow-hidden border border-zinc-100 dark:border-zinc-800">
 
         {blog.imgsrc && (
-          <div className="mb-8 max-h-[450px] overflow-hidden">
+          <div className="w-full bg-zinc-100 dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-800">
             <Image
               src={blog.imgsrc}
               alt={blog.title}
-              width={800}
-              height={500}
-              className="w-full h-full object-cover rounded-b-lg shadow-lg"
+              width={1200}
+              height={600}
+              priority
+              className="w-full h-[300px] md:h-[450px] object-cover"
             />
           </div>
         )}

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
@@ -14,7 +14,6 @@ const NAV_ITEMS = [
   { label: "About",   href: "/about" },
   { label: "Events",  href: "/events" },
   { label: "Blogs",   href: "/blogs" },
-  { label: "Members", href: "/members" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -75,7 +74,8 @@ export default function Navbar() {
                 className={`hidden md:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 ${pathname.startsWith("/portal") ? "bg-orange-500 text-white shadow-[0_4px_12px_rgba(249,115,22,0.35)]" : "bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-200 dark:border-orange-500/30 hover:bg-orange-100 dark:hover:bg-orange-500/20"}`}
               >
                 {user?.user_metadata?.avatar_url ? (
-                  <Image src={user.user_metadata.avatar_url} alt="avatar" width={18} height={18} className="rounded-full" />
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={user.user_metadata.avatar_url} alt="avatar" width={18} height={18} className="rounded-full" />
                 ) : (<LayoutDashboard size={13} />)}
                 My Portal
               </Link>
