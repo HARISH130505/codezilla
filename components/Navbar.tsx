@@ -136,7 +136,7 @@ export default function Navbar() {
                     <Link href="/login" className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 text-sm font-medium hover:bg-zinc-100 dark:hover:bg-zinc-700">
                       <LogIn size={14} /> Member login
                     </Link>
-                    <Link href="/signup" className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold">
+                    <Link href="/recruit" className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold">
                       Apply for membership
                     </Link>
                   </>
