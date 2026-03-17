@@ -43,23 +43,17 @@ const MEMBERS = [
     bio: "Crafts the visual identity of Codezilla.",
   },
   {
-    name: "Sneha Das",
-    role: "Management Lead",
+    name: "Arjun",
+    role: "Management & PR Lead",
     img: "/Management_lead.jpg",
-    bio: "Coordinates events, logistics, and timelines.",
+    bio: "Expands reach, builds partnerships, and manages events and logistics.",
   },
   {
     name: "Tanu Priya",
     role: "Content Lead",
     img: "/Content_lead.jpg",
     bio: "Shapes the stories we tell, inside and outside campus.",
-  },
-  {
-    name: "Madhumitha Das",
-    role: "PR Lead",
-    img: "/PR_lead.jpg",
-    bio: "Grows our reach and builds partner relationships.",
-  },
+  }
 ];
 
 export default function MembersPage() {
