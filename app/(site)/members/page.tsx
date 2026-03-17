@@ -45,7 +45,7 @@ const MEMBERS = [
   {
     name: "Arjun",
     role: "Management & PR Lead",
-    img: "/Management_lead.jpg",
+    img: "/Management_lead.jpeg",
     bio: "Expands reach, builds partnerships, and manages events and logistics.",
   },
   {
