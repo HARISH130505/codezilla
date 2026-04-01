@@ -143,7 +143,7 @@ export default function OnboardingPage() {
           {/* Full Name */}
           <div className="space-y-1.5">
             <label className="flex items-center gap-1.5 text-[10px] text-zinc-500 dark:text-white/35 uppercase tracking-wider">
-              <User size={10} className="text-orange-500 dark:text-orange-500/80 dark:text-orange-400/70" /> Full Name *
+              <User size={10} className="text-orange-500 dark:text-orange-400/70" /> Full Name *
             </label>
             <input
               type="text"
@@ -158,7 +158,7 @@ export default function OnboardingPage() {
           {/* Roll Number */}
           <div className="space-y-1.5">
             <label className="flex items-center gap-1.5 text-[10px] text-zinc-500 dark:text-white/35 uppercase tracking-wider">
-              <Hash size={10} className="text-orange-500 dark:text-orange-500/80 dark:text-orange-400/70" /> Roll Number
+              <Hash size={10} className="text-orange-500 dark:text-orange-400/70" /> Roll Number
             </label>
             <input
               type="text"
@@ -173,7 +173,7 @@ export default function OnboardingPage() {
             {/* Domain */}
             <div className="space-y-1.5">
               <label className="flex items-center gap-1.5 text-[10px] text-zinc-500 dark:text-white/35 uppercase tracking-wider">
-                <Cpu size={10} className="text-orange-500 dark:text-orange-500/80 dark:text-orange-400/70" /> Domain *
+                <Cpu size={10} className="text-orange-500 dark:text-orange-400/70" /> Domain *
               </label>
               <select
                 required
@@ -191,7 +191,7 @@ export default function OnboardingPage() {
             {/* Year */}
             <div className="space-y-1.5">
               <label className="flex items-center gap-1.5 text-[10px] text-zinc-500 dark:text-white/35 uppercase tracking-wider">
-                <GraduationCap size={10} className="text-orange-500 dark:text-orange-500/80 dark:text-orange-400/70" /> Year of Study *
+                <GraduationCap size={10} className="text-orange-500 dark:text-orange-400/70" /> Year of Study *
               </label>
               <select
                 required
@@ -210,7 +210,7 @@ export default function OnboardingPage() {
           {/* Department */}
           <div className="space-y-1.5">
             <label className="flex items-center gap-1.5 text-[10px] text-zinc-500 dark:text-white/35 uppercase tracking-wider">
-              <Building2 size={10} className="text-orange-500 dark:text-orange-500/80 dark:text-orange-400/70" /> Department *
+              <Building2 size={10} className="text-orange-500 dark:text-orange-400/70" /> Department *
             </label>
             <input
               type="text"
@@ -225,7 +225,7 @@ export default function OnboardingPage() {
           {/* Skills */}
           <div className="space-y-1.5">
             <label className="flex items-center gap-1.5 text-[10px] text-zinc-500 dark:text-white/35 uppercase tracking-wider">
-              <BookOpen size={10} className="text-orange-500 dark:text-orange-500/80 dark:text-orange-400/70" /> Skills (press Enter to add)
+              <BookOpen size={10} className="text-orange-500 dark:text-orange-400/70" /> Skills (press Enter to add)
             </label>
             <div className="rounded-xl border border-white/[0.08] bg-white/[0.04] p-3 space-y-2 focus-within:ring-2 focus-within:ring-orange-500/30 dark:focus-within:ring-orange-400/40 focus-within:border-orange-500/40 dark:focus-within:border-orange-400/50 transition">
               {skills.length > 0 && (
@@ -236,7 +236,7 @@ export default function OnboardingPage() {
                       className="inline-flex items-center gap-1 rounded-full bg-orange-500/20 border border-orange-500/30 px-2.5 py-0.5 text-[11px] text-orange-600 dark:text-orange-300 font-medium"
                     >
                       {s}
-                      <button type="button" onClick={() => removeSkill(s)} className="text-orange-500 dark:text-orange-500/70 dark:text-orange-400/60 hover:text-orange-600 dark:text-orange-300 transition-colors">
+                      <button type="button" onClick={() => removeSkill(s)} className="text-orange-500 dark:text-orange-400/60 hover:text-orange-600 hover:dark:text-orange-300 transition-colors">
                         <X size={10} />
                       </button>
                     </span>
