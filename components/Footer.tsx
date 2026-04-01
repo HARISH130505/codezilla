@@ -5,28 +5,20 @@ import Image from "next/image";
 import { FaInstagram, FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import { SiMozilla } from "react-icons/si";
 
-const LINKS = [
-  { label: "About",   href: "/about" },
-  { label: "Events",  href: "/events" },
-  { label: "Blogs",   href: "/blogs" },
-  { label: "Members", href: "/members" },
-  { label: "Contact", href: "/contact" },
-  { label: "Portal",  href: "/portal" },
-];
 
 const SOCIALS = [
-  { icon: FaInstagram,  href: "https://www.instagram.com/codezillaclub/",           label: "Instagram" },
-  { icon: FaGithub,     href: "https://github.com/CodezillaClub",                   label: "GitHub" },
-  { icon: SiMozilla,    href: "https://community.mozilla.org/de/groups/codezilla/", label: "Mozilla" },
-  { icon: FaLinkedinIn, href: "https://www.linkedin.com/company/codezillaclub/",    label: "LinkedIn" },
-  { icon: FaXTwitter,   href: "https://x.com/CodezillaClub",                        label: "X" },
+  { icon: FaInstagram, href: "https://www.instagram.com/codezillaclub/", label: "Instagram" },
+  { icon: FaGithub, href: "https://github.com/CodezillaClub", label: "GitHub" },
+  { icon: SiMozilla, href: "https://community.mozilla.org/de/groups/codezilla/", label: "Mozilla" },
+  { icon: FaLinkedinIn, href: "https://www.linkedin.com/company/codezillaclub/", label: "LinkedIn" },
+  { icon: FaXTwitter, href: "https://x.com/CodezillaClub", label: "X" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="relative bg-zinc-950 border-t border-white/[0.05] overflow-hidden">
+    <footer className="relative bg-zinc-50 dark:bg-zinc-950 border-t border-zinc-200 dark:border-white/[0.05] overflow-hidden">
       {/* Subtle brand glow */}
-      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-32 bg-orange-500/10 blur-3xl rounded-full" />
+      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-32 bg-orange-500/5 dark:bg-orange-500/10 blur-3xl rounded-full" />
 
       <div className="relative max-w-7xl mx-auto px-5 md:px-8 py-10">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
@@ -40,28 +32,18 @@ export default function Footer() {
                   alt="Codezilla"
                   fill
                   sizes="28px"
-                  className="object-contain"
+                  className="object-contain dark:invert"
                 />
               </div>
-              <span className="font-passion text-base text-white/90 tracking-wide">CODEZILLA</span>
+              <span className="font-passion text-base text-zinc-900 dark:text-zinc-100 tracking-wide">CODEZILLA</span>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 max-w-[250px] leading-relaxed">
+                Mozilla Campus Club · SRMIST Ramapuram
+              </p>
             </div>
-            <p className="text-xs text-white/35 max-w-[200px] leading-relaxed">
-              Mozilla Campus Club · SRMIST Ramapuram
-            </p>
+
           </div>
 
-          {/* Nav links */}
-          <nav className="flex flex-wrap gap-x-5 gap-y-2">
-            {LINKS.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="text-xs text-white/40 hover:text-orange-300 transition-colors duration-150"
-              >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
+
 
           {/* Socials */}
           <div className="flex items-center gap-3">
@@ -72,7 +54,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-8 h-8 flex items-center justify-center rounded-lg border border-white/[0.07] text-white/40 hover:text-orange-300 hover:border-orange-400/30 hover:bg-orange-500/10 transition-all duration-150"
+                className="w-8 h-8 flex items-center justify-center rounded-lg border border-zinc-200 dark:border-white/[0.07] text-zinc-500 dark:text-zinc-400 hover:text-orange-500 dark:hover:text-orange-300 hover:border-orange-500/30 dark:hover:border-orange-400/30 hover:bg-orange-500/5 dark:hover:bg-orange-500/10 transition-all duration-150"
               >
                 <Icon size={14} />
               </a>
@@ -81,11 +63,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom rule */}
-        <div className="mt-8 pt-6 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-[11px] text-white/25">
+        <div className="mt-8 pt-6 border-t border-zinc-200 dark:border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
             © {new Date().getFullYear()} Codezilla SRMIST. All rights reserved.
           </p>
-          <p className="text-[11px] text-white/20">
+          <p className="text-[11px] text-zinc-400 dark:text-zinc-500">
             Built with Next.js · Supabase · Tailwind
           </p>
         </div>

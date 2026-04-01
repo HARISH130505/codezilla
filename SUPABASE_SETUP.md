@@ -15,6 +15,11 @@ create table public.profiles (
   year text,
   joined_at date,
   avatar_url text,
+  domain text,
+  department text,
+  position text,
+  skills text[],
+  onboarding_complete boolean default false,
   role text not null default 'member' check (role in ('member', 'moderator', 'admin'))
 );
 
@@ -127,6 +132,41 @@ Go to Supabase Dashboard → Settings → API and send me:
 - Anon public key  →  eyJ...
 
 I need these to connect the website to the database.
+
+---
+
+## STEP 7 — Admin Whitelist (allowed_admins)
+
+Run this so we have a separated list specifically for admins:
+
+```sql
+create table public.allowed_admins (
+  id uuid default gen_random_uuid() primary key,
+  email text not null unique,
+  added_by text,
+  added_at timestamptz default now()
+);
+
+alter table public.allowed_admins enable row level security;
+
+-- Only authenticated users (particularly during login) can read the list to check if they belong.
+create policy "Auth users can read allowed_admins"
+  on public.allowed_admins for select
+  to authenticated
+  using (true);
+
+-- Only existing admins can insert new admins, or you can manually insert them via Supabase Dashboard.
+create policy "Admins can insert allowed_admins"
+  on public.allowed_admins for insert
+  to authenticated
+  with check (exists (select 1 from profiles where id = auth.uid() and role = 'admin'));
+
+-- Only existing admins can delete from the list
+create policy "Admins can delete allowed_admins"
+  on public.allowed_admins for delete
+  to authenticated
+  using (exists (select 1 from profiles where id = auth.uid() and role = 'admin'));
+```
 
 ---
 

@@ -43,23 +43,17 @@ const MEMBERS = [
     bio: "Crafts the visual identity of Codezilla.",
   },
   {
-    name: "Sneha Das",
-    role: "Management Lead",
-    img: "/Management_lead.jpg",
-    bio: "Coordinates events, logistics, and timelines.",
+    name: "Arjun",
+    role: "Management & PR Lead",
+    img: "/Management_lead.jpeg",
+    bio: "Expands reach, builds partnerships, and manages events and logistics.",
   },
   {
     name: "Tanu Priya",
     role: "Content Lead",
     img: "/Content_lead.jpg",
     bio: "Shapes the stories we tell, inside and outside campus.",
-  },
-  {
-    name: "Madhumitha Das",
-    role: "PR Lead",
-    img: "/PR_lead.jpg",
-    bio: "Grows our reach and builds partner relationships.",
-  },
+  }
 ];
 
 export default function MembersPage() {
@@ -110,7 +104,7 @@ export default function MembersPage() {
                   alt={name}
                   fill
                   sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
-                  className="object-cover object-top group-hover:scale-[1.04] transition-transform duration-500"
+                  className="object-contain group-hover:scale-[1.04] transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               </div>
